@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class FileParsing {
 
-	public String[] 
+	public String[] ;
 	// open the file
 	BufferedReader f = new BufferedReader(new FileReader(PATH));
 	// read the first line here, we don't want the while to read it every loop, maybe can be FIXED
