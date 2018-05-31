@@ -9,6 +9,10 @@ import java.util.Arrays;
 
 public class testerOrder {
 
+    String[] absOrdered = {".file5.txt",".file6.txt",".file7.txt",".file8.txt","Same_a.txt","file0.a",
+            "file0.txt","file1.a","file1.txt",
+            "file2.a","file2.txt","file3.txt","file4.A","file4.txt","file5.b","same_name_a.txt",
+            "same_name_c.txt"};
 
     File c = new File("c.txt");
     File bh = new File("bh.docs");
