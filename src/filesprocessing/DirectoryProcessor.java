@@ -12,6 +12,8 @@ public class DirectoryProcessor {
 		// get the command file and process it into sections.
 		FileParsing fileParse = new FileParsing();
 		ArrayList<String[]> sections = fileParse.parseFile(PATH);
+		fileParse.filterAndOrder(sections);
 
 	}
+
 }
