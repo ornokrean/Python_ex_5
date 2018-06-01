@@ -1,15 +1,15 @@
 package filesprocessing.filters;
 
 public class FilterFactory {
-	final static int SMALLER = 0;
-	final static int NAME = 1;
-	final static int CONTAINS = 2;
-	final static int PREFIX = 3;
-	final static int SUFFIX = 4;
-	final static int WRITABLE = 5;
-	final static int EXECUTABLE = 6;
-	final static int HIDDEN = 7;
-	final static int ALL = 8;
+	public final static int SMALLER = 0;
+	public final static int NAME = 1;
+	public final static int CONTAINS = 2;
+	public final static int PREFIX = 3;
+	public final static int SUFFIX = 4;
+	public final static int WRITABLE = 5;
+	public final static int EXECUTABLE = 6;
+	public final static int HIDDEN = 7;
+	public final static int ALL = 8;
 	public Filter[] filters = new Filter[9];
 
 	public Filter[] createFilters() {

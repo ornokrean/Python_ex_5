@@ -1,9 +1,9 @@
 package filesprocessing.Orders;
 
 public class OrderFactory {
-	final static int ABS = 0;
-	final static int SIZE = 1;
-	final static int TYPE = 2;
+	public final static int ABS = 0;
+	public final static int SIZE = 1;
+	public final static int TYPE = 2;
 
 	public Order[] orders = new Order[9];
 
