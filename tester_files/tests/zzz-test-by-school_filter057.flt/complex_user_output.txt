@@ -12,15 +12,3 @@ file5.txt
 file6.txt
 file7.txt
 file8.txt
-Same_a.txt
-file0.txt
-file1.txt
-file2.txt
-file3.txt
-file4.txt
-file5.txt
-file6.txt
-file7.txt
-file8.txt
-same_name_a.txt
-same_name_c.txt

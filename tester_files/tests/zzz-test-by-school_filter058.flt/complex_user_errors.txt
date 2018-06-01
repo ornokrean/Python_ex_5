@@ -1,1 +1,4 @@
-Warning in line 7
+Exception in thread "main" java.lang.NullPointerException
+	at filesprocessing.FileParsing.parseLine(FileParsing.java:97)
+	at filesprocessing.FileParsing.filterAndOrder(FileParsing.java:84)
+	at filesprocessing.DirectoryProcessor.main(DirectoryProcessor.java:14)

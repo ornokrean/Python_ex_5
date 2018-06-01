@@ -1,6 +1,5 @@
 same_name_c.txt
 same_name_a.txt
-dir
 Same_a.txt
 99..size-8780.NHDR.png
 98.w.size-19986.ACA.CCC

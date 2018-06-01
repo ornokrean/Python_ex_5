@@ -149,7 +149,6 @@
 98.w.size-19986.ACA.CCC
 99..size-8780.NHDR.png
 Same_a.txt
-dir
 file0.a
 file0.txt
 file1.a
@@ -209,7 +208,16 @@ same_name_c.txt
 134.w.size-36081.BCB.BCA
 135.w.size-92747.CAC.CAC
 136.w.size-9436.ACB.ACC
+137.w.size-8337.BCB.CBC
+138..size-34163.ABB.AAB
+139..size-43857.CCB.BCB
 14.w.size-811.BAA.BAB
+140..size-34523.AAC.BCB
+141.w.size-2732.CBA.ABA
+142..size-67431.BCA.BCB
+143..size-18945.ACA.CAA
+144.w.size-96655.BAC.BBA
+145.w.size-39250.CCB.BAB
 146..size-65133.BAC.CBB
 147.w.size-65457.CBA.CCC
 148..size-100963.CAB.BAA
@@ -308,7 +316,6 @@ same_name_c.txt
 98.w.size-19986.ACA.CCC
 99..size-8780.NHDR.png
 Same_a.txt
-dir
 file0.a
 file0.txt
 file1.a

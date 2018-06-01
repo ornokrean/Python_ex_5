@@ -1,2 +1,4 @@
-Warning in line 2
-Warning in line 6
+Warning at line [Ljava.lang.String;@66048bfdWarning at line [Ljava.lang.String;@233c0b17Exception in thread "main" java.lang.NullPointerException
+	at filesprocessing.FileParsing.parseLine(FileParsing.java:97)
+	at filesprocessing.FileParsing.filterAndOrder(FileParsing.java:84)
+	at filesprocessing.DirectoryProcessor.main(DirectoryProcessor.java:14)

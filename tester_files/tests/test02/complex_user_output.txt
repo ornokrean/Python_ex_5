@@ -152,7 +152,6 @@ file0.a
 file1.a
 file2.a
 file5.b
-dir
 99..size-8780.NHDR.png
 Same_a.txt
 file0.txt

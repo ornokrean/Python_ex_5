@@ -18,7 +18,7 @@ public class FileParsing {
 
 	Filter[] filters = new FilterFactory().createFilters();
 	Order[] orders = new OrderFactory().createFilters();
-	int line = 2;
+	int currline = 2;
 	File[] files;
 	File[] currFiles;
 	boolean hadNot = false;
@@ -84,7 +84,7 @@ public class FileParsing {
 					String[] order = parseLine(section[i],"#REVERSE");
 					orderFiles(order);
 				}
-				line+=2;
+				currline+=2;
 			}
 			for (File file:currFiles){
 				System.out.println(file.getName());
@@ -171,7 +171,7 @@ public class FileParsing {
 					filt = filters[FilterFactory.EXECUTABLE];
 					break;
 				default:
-					System.err.print("Warning at line "+line);
+					System.err.print("Warning at line "+currline);
 					return;
 			}
 			for (File file : currFiles){
