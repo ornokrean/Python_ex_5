@@ -1,5 +1,7 @@
 package filesprocessing;
 
+import filesprocessing.Orders.Order;
+import filesprocessing.Orders.OrderFactory;
 import filesprocessing.filters.Filter;
 import filesprocessing.filters.FilterFactory;
 
@@ -54,6 +56,14 @@ public class FileParsing {
 	}
 	public void filterAndOrder(ArrayList<String[]> sections){
 		Filter[] filters = new FilterFactory().createFilters();
+		Order[] orders = new OrderFactory().createFilters();
+		int line = 1;
+		for (String[] section : sections){
+
+		}
+	}
+	public String[] parseCommand(String command){
+		String[] output = command.split("#");
 	}
 }
 
