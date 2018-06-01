@@ -13,7 +13,7 @@ class TypeOrder extends Order {
 
     @Override
     public int compare(File file1, File file2) {
-        int result=getType(file2).compareTo(getType(file1));
+        int result=getType(file1).compareTo(getType(file2));
         return (result!=0) ? result: defaultCompare(file1, file2);
     }
 
