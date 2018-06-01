@@ -39,6 +39,8 @@ public class testerOrder {
     //File[] sortedByType = {}
     Random rand = new Random();
 
+
+
     @Test
     public void testOrderAbs() {
         AbsOrder comp = new AbsOrder(true);
