@@ -10,17 +10,11 @@ class AbsOrder extends Order implements Comparator<File> {
     }
 
     @Override
-    Comparator createComperator() {
-        comparator=Comparator.comparing(File::getAbsolutePath);
+    public int compare(File file1, File file2) {
         if (reverse){
-            comparator.reversed();
+            return defaultCompare(file2 , file1);
         }
-        return comparator;
+        return defaultCompare(file1,file2);
     }
 
-
-    @Override
-    public int compare(File o1, File o2) {
-        return o1.getAbsolutePath().compareTo(o2.getAbsolutePath());
-    }
 }

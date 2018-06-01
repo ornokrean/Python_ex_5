@@ -13,10 +13,15 @@ public abstract class Order implements Comparator <File>{
 
     }
 
-    abstract Comparator createComperator();
+    public abstract int compare(File fileOne , File fileTwo);
 
     Comparator getComparator(){
         return comparator;
+    }
+
+    
+    int defaultCompare(File o1, File o2) {
+        return o1.getAbsolutePath().compareTo(o2.getAbsolutePath());
     }
 
 
