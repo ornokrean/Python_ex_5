@@ -120,7 +120,7 @@ public class FileParsing {
 					comp = orders[OrderFactory.SIZE];
 					break;
 				default:
-					System.err.print("Warning at line "+line);
+					System.err.print("Warning in line "+currline);
 					return;
 			}
 			if (hadNot){
@@ -171,7 +171,7 @@ public class FileParsing {
 					filt = filters[FilterFactory.EXECUTABLE];
 					break;
 				default:
-					System.err.print("Warning at line "+currline);
+					System.err.print("Warning in line "+currline);
 					return;
 			}
 			for (File file : currFiles){
