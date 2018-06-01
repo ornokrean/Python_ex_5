@@ -9,7 +9,7 @@ public class DirectoryProcessor {
 			System.exit(0);
 		}
 		// get the command file and process it into sections.
-		FileParsing fileParse = new FileParsing(args[1]);
+		FileParsing fileParse = new FileParsing(args[0],args[1]);
 		ArrayList<String[]> sections = fileParse.parseFile();
 		fileParse.filterAndOrder(sections);
 

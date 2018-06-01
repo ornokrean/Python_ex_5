@@ -23,15 +23,16 @@ public class FileParsing {
 	File[] currFiles;
 	boolean hadNot = false;
 	String filesPath;
+	BufferedReader f ;
 
-	public FileParsing(String path) {
-		filesPath = path;
-		files = new File(filesPath).listFiles();
+	public FileParsing(String file, String command) throws IOException {
+		files = new File(file).listFiles();
+		f = new BufferedReader(new FileReader(command));
+
 	}
 
 	public ArrayList<String[]> parseFile() throws IOException {
 		// open the file
-		BufferedReader f = new BufferedReader(new FileReader(filesPath));
 		// read the first line here, we don't want the while to read it every loop, maybe can be FIXED
 		String currentLine = f.readLine();
 		// create sectionsArray of 4 cells
