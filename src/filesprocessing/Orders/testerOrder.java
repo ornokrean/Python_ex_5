@@ -26,7 +26,8 @@ public class testerOrder {
 
     String path ="C:\\testex5files\\advanced_source_directory";
     File f = new File(path);
-    File[] notSortedFromFile = f.listFiles();
+    public File[] notSortedFromFile = f.listFiles();
+
     //File[] sortedByNameFromFiles=
 
 
@@ -41,11 +42,13 @@ public class testerOrder {
         AbsOrder comp = new AbsOrder(false);
         Arrays.sort(notSorted, comp);
         Assert.assertEquals("not sorted well", notSorted, sortedByName);
-        System.out.println(absOrdered);
-        System.out.println(notSortedFromFile);
-        for (int i = 0; i <absOrdered.length ; i++) {
-            Assert.assertEquals(notSortedFromFile[i].getName(),absOrdered[i]);
 
+        for (int i = 0; i < absOrdered.length; i++) {
+            Arrays.sort(notSortedFromFile,comp);
+            System.out.println(absOrdered[i]);
+            System.out.println(notSortedFromFile[i]);
+        }for (int i = 0; i <absOrdered.length ; i++) {
+            Assert.assertEquals(notSortedFromFile[i].getName(),absOrdered[i]);
         }
     }
 }
