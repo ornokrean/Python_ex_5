@@ -17,6 +17,9 @@ public class testerOrder {
             ".file6.txt", ".file7.txt", ".file8.txt", "Same_a.txt", "file0.txt",
             "file1.txt", "file2.txt", "file3.txt", "file4.txt", "same_name_a.txt",
             "same_name_c.txt"};
+    String[] sizeOrder ={".file8.txt","Same_a.txt","file0.a","file1.a","file2.a","file4.A","file5.b","file3.txt",
+            "file4.txt"," .file7.txt",".file5.txt",".file6.txt","file1.txt","file0.txt","same_name_a" +
+            ".txt","file2.txt", "same_name_c.txt"};
 
     File c = new File("c.txt");
     File bh = new File("bh.docs");
@@ -57,14 +60,20 @@ public class testerOrder {
     @Test
     public void testOrderType() {
         Order comp = new TypeOrder();
-        for (int i = 0; i < notSortedFromFile.length; i++) {
-            //System.out.println(typeOrder[i]);
-            System.out.println(notSortedFromFile[i]);
-        }
-        System.out.println("\n");
         Arrays.sort(notSortedFromFile, comp);
         for (int i = 0; i < notSortedFromFile.length; i++) {
-            //System.out.println(typeOrder[i]);
+            System.out.println(typeOrder[i]);
+            System.out.println(notSortedFromFile[i]);
+
+        }
+    }
+
+    @Test
+    public void orderSize(){
+        Order comp = new SizeOrder();
+        Arrays.sort(notSortedFromFile, comp);
+        for (int i = 0; i < notSortedFromFile.length; i++) {
+            System.out.println(sizeOrder[i]);
             System.out.println(notSortedFromFile[i]);
 
         }
