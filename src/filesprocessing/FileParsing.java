@@ -49,6 +49,9 @@ public class FileParsing {
 		}
 		return sectionsArray;
 	}
+	public void filterAndOrder(ArrayList<String[]> sections){
+
+	}
 }
 
 
