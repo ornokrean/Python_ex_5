@@ -19,10 +19,10 @@ public class FileParsing {
 		while (currentLine != null)
 		{
 			String[] section = new String[4];
-
 			// read the first 3 line of the section
 			for (int i = 0; i < 3; i++) {
 				section[i] = currentLine;
+
 //				maybe good for checking errors type II.
 				if (currentLine != null) {
 					if (i == 0 && !currentLine.equals("FILTER")) {
@@ -30,11 +30,15 @@ public class FileParsing {
 						System.exit(0);
 					}
 					if (i == 2 && !currentLine.equals("ORDER")) {
-						System.err.println("ERROR: Bad subsection name\n");
+						System.err.print("ERROR: Bad subsection name\n");
 						System.exit(0);
 					}
+				}else if(i==2){
+					System.err.print("ERROR: Bad format of Commands File\n");
+					System.exit(0);
 				}
 				currentLine = f.readLine();
+			}
 				// if the 4'th line is not a start of a new section, add it ro the sectionsArray.
 				if (currentLine != null && !currentLine.equals("FILTER")) {
 					section[3] = currentLine;
@@ -42,7 +46,6 @@ public class FileParsing {
 				}
 				// add the section to the sections array
 				sectionsArray.add(section);
-			}
 		}
 		return sectionsArray;
 	}
