@@ -1,5 +1,8 @@
 package filesprocessing;
 
+import filesprocessing.filters.Filter;
+import filesprocessing.filters.FilterFactory;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -50,7 +53,7 @@ public class FileParsing {
 		return sectionsArray;
 	}
 	public void filterAndOrder(ArrayList<String[]> sections){
-
+		Filter[] filters = new FilterFactory().createFilters();
 	}
 }
 

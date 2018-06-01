@@ -9,7 +9,7 @@ public class OrderFactory {
 
 	public Order[] createFilters() {
 		orders[ABS] = new AbsOrder();
-		orders[SIZE] = new SizeOrder();
+		//orders[SIZE] = new SizeOrder();
 		orders[TYPE] = new TypeOrder();
 		return orders;
 	}
