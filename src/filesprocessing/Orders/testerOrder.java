@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -32,19 +31,18 @@ public class testerOrder {
     String path = "C:\\testex5files\\advanced_source_directory";
     File f = new File(path);
     File[] notSortedFromFile = f.listFiles();
-
-    //File[] sortedByNameFromFiles=
-
-
-    //File[] sortedByType = {}
     Random rand = new Random();
-
 
 
     @Test
     public void testOrderAbs() {
-        AbsOrder comp = new AbsOrder(true);
+        AbsOrder comp = new AbsOrder();
         Arrays.sort(notSorted, comp);
+        for (int i = 0; i < notSorted.length; i++) {
+            //Arrays.sort(notSortedFromFile, comp);
+            System.out.println(notSorted[i]);
+            System.out.println(sortedByName[i]);
+        }
         Assert.assertEquals("not sorted well", notSorted, sortedByName);
 
         for (int i = 0; i < absOrdered.length; i++) {
@@ -58,19 +56,21 @@ public class testerOrder {
 
     @Test
     public void testOrderType() {
-//        for (int i = 0; i < absOrdered.length; i++) {
-//            System.out.println(notSortedFromFile[i]);
-//        }
-//        TypeOrder comp = new TypeOrder(true);
-//        Arrays.sort(notSortedFromFile, comp);
-//        for (int i = 0; i < absOrdered.length; i++) {
-//            //Arrays.sort(notSortedFromFile, comp);
-//            System.out.println(typeOrder[i]);
-//            System.out.println(notSortedFromFile[i]);
-//
-//
-//        }
+        Order comp = new TypeOrder();
+        for (int i = 0; i < notSortedFromFile.length; i++) {
+            //System.out.println(typeOrder[i]);
+            System.out.println(notSortedFromFile[i]);
+        }
+        System.out.println("\n");
+        Arrays.sort(notSortedFromFile, comp);
+        for (int i = 0; i < notSortedFromFile.length; i++) {
+            //System.out.println(typeOrder[i]);
+            System.out.println(notSortedFromFile[i]);
+
+        }
     }
 }
+
+
 
 
