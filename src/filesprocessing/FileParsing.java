@@ -27,11 +27,7 @@ public class FileParsing {
 
 	public FileParsing(String file, String command) throws IOException {
 		files = new File(file).listFiles();
-		try {
-			f = new BufferedReader(new FileReader(command));
-		}catch (IOException e){
-			System.err.print("error  : command file is not good *FIX THIS MESSAGE*");
-		}
+		f = new BufferedReader(new FileReader(command));
 
 	}
 
@@ -124,7 +120,7 @@ public class FileParsing {
 					comp = orders[OrderFactory.SIZE];
 					break;
 				default:
-					System.err.print("Warning in line "+currline);
+					System.err.print("Warning at line "+line);
 					return;
 			}
 			if (hadNot){
@@ -169,13 +165,13 @@ public class FileParsing {
 					filt = filters[FilterFactory.SMALLER];
 					break;
 				case "between":
-					filt = filters[FilterFactory.BETWEEEN];
+					filt = filters[FilterFactory.EXECUTABLE];
 					break;
 				case "greater_than":
-					filt = filters[FilterFactory.GREATER];
+					filt = filters[FilterFactory.EXECUTABLE];
 					break;
 				default:
-					System.err.print("Warning in line "+currline);
+					System.err.print("Warning at line "+currline);
 					return;
 			}
 			for (File file : currFiles){

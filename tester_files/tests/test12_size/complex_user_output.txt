@@ -148,7 +148,6 @@
 97..size-65132.CCB.CCC
 98.w.size-19986.ACA.CCC
 99..size-8780.NHDR.png
-Same_a.txt
 file0.a
 file0.txt
 file1.a
@@ -163,5 +162,6 @@ file5.txt
 file6.txt
 file7.txt
 file8.txt
+Same_a.txt
 same_name_a.txt
 same_name_c.txt

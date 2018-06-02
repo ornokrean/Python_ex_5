@@ -1,1 +1,1 @@
-python3 tester_python.py
+python tester_python.py
