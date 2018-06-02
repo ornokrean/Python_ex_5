@@ -171,6 +171,7 @@ public class FileParsing {
 				case "between":
 					filt = filters[FilterFactory.BETWEEEN];
 					break;
+
 				case "greater_than":
 					filt = filters[FilterFactory.GREATER];
 					break;
