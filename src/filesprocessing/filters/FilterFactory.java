@@ -12,7 +12,7 @@ public class FilterFactory {
 	public final static int EXECUTABLE = 8;
 	public final static int HIDDEN = 9;
 	public final static int ALL = 10;
-	public Filter[] filters = new Filter[9];
+	public Filter[] filters = new Filter[11];
 
 	public Filter[] createFilters() {
 		filters[SMALLER] = new SmallerThanFilter();
