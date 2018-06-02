@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Random;
 
 public class testerOrder {
@@ -59,7 +60,8 @@ public class testerOrder {
 
     @Test
     public void testOrderType() {
-        Order comp = new TypeOrder();
+        Comparator<File> comp = new TypeOrder();
+        comp=comp.reversed();
         Arrays.sort(notSortedFromFile, comp);
         for (int i = 0; i < notSortedFromFile.length; i++) {
             System.out.println(typeOrder[i]);

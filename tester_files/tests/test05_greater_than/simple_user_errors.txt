@@ -1,4 +1,9 @@
-Exception in thread "main" java.lang.NullPointerException
-	at filesprocessing.FileParsing.parseLine(FileParsing.java:97)
-	at filesprocessing.FileParsing.filterAndOrder(FileParsing.java:84)
+Exception in thread "main" java.lang.NumberFormatException: For input string: "7.6 "
+	at java.lang.NumberFormatException.forInputString(Unknown Source)
+	at java.lang.Long.parseLong(Unknown Source)
+	at java.lang.Long.parseLong(Unknown Source)
+	at filesprocessing.filters.GreaterThanFilter.passFilter(GreaterThanFilter.java:9)
+	at filesprocessing.filters.Filter.passReverse(Filter.java:12)
+	at filesprocessing.FileParsing.filterFiles(FileParsing.java:190)
+	at filesprocessing.FileParsing.filterAndOrder(FileParsing.java:85)
 	at filesprocessing.DirectoryProcessor.main(DirectoryProcessor.java:14)

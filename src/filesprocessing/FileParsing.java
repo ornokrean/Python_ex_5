@@ -80,11 +80,12 @@ public class FileParsing {
 		for (String[] section : sections) {
 			currFiles = files.clone();
 			for (int i=1; i<4;i+=2){
-				if (i==1){
-					String[] filter = parseLine(section[i],"#NOT");
-					filterFiles(filter);
+				if (i==1) {
+                    String[] filter = parseLine(section[i], "#NOT");
+                    filterFiles(filter);
 
-				}else{
+                }
+                if (i==3){
 					String[] order = parseLine(section[i],"#REVERSE");
 					orderFiles(order);
 				}
@@ -98,6 +99,9 @@ public class FileParsing {
 
 	public String[] parseLine(String line, String notSuffix) {
 		hadNot = false;
+		if (line == null){
+			line = "abs";
+		}
 		if (line.contains(notSuffix)) {
 			int indexToRemove = line.indexOf(notSuffix);
 			line = line.substring(0, indexToRemove);
