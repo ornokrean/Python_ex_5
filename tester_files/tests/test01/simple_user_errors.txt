@@ -1,2 +1,1 @@
-Warning in line 2
-Warning in line 4
+Warning at line 2Warning at line [Ljava.lang.String;@6d06d69c

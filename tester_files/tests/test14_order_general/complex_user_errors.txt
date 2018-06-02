@@ -1,4 +1,1 @@
-Warning in line 4
-Warning in line 8
-Warning in line 12
-Warning in line 16
+Warning at line [Ljava.lang.String;@6d06d69cWarning at line [Ljava.lang.String;@7852e922Warning at line [Ljava.lang.String;@4e25154fWarning at line [Ljava.lang.String;@70dea4e
