@@ -7,6 +7,6 @@ public class SmallerThanFilter extends Filter{
 	public boolean passFilter(File f, String[] args){
 		long bound =  Long.parseLong(args[1]);
 		long size = f.length()/SIZE_FACTOR;
-		return (bound>=0 && 0<=size && size < bound);
+		return (bound>=0 && size < bound);
 	}
 }
