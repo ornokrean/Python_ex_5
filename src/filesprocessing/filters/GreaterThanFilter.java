@@ -5,7 +5,10 @@ import java.io.File;
 public class GreaterThanFilter extends Filter {
 	private static final int SIZE_FACTOR = 1024;
 
-	public boolean passFilter(File f, String[] args) {
+	public boolean passFilter(File f, String[] args)  throws FilterException {
+		if (args.length != 2) {
+			throw new FilterException();
+		}
 		long bound = (long) Double.parseDouble(args[1].replace(" ",""));
 		long size = f.length() / SIZE_FACTOR;
 		return (bound >= 0 && bound <= size);
