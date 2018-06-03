@@ -12,9 +12,9 @@ public class FilterFactory {
 	public final static int EXECUTABLE = 8;
 	public final static int HIDDEN = 9;
 	public final static int ALL = 10;
-	public Filter[] filters = new Filter[11];
+	public static Filter[] filters = new Filter[11];
 
-	public Filter[] createFilters() {
+	public FilterFactory() {
 		filters[SMALLER] = new SmallerThanFilter();
 		filters[GREATER] = new GreaterThanFilter();
 		filters[BETWEEEN] = new BetweenFilter();
@@ -26,6 +26,38 @@ public class FilterFactory {
 		filters[EXECUTABLE] = new ExecutableFilter();
 		filters[HIDDEN] = new HiddenFilter();
 		filters[ALL] = new AllFilter();
-		return filters;
+	}
+
+	public Filter getFilter(String filterName) throws FilterException {
+		switch (filterName) {
+			case "all":
+				return filters[FilterFactory.ALL];
+			case "between":
+				return filters[FilterFactory.BETWEEEN];
+			case "hidden":
+				return filters[FilterFactory.HIDDEN];
+			case "executable":
+				return filters[FilterFactory.EXECUTABLE];
+			case "writable":
+				return filters[FilterFactory.WRITABLE];
+			case "suffix":
+				return filters[FilterFactory.SUFFIX];
+			case "prefix":
+				return filters[FilterFactory.PREFIX];
+			case "contains":
+				return filters[FilterFactory.CONTAINS];
+			case "file":
+				return filters[FilterFactory.NAME];
+			case "smaller_than":
+				return filters[FilterFactory.SMALLER];
+			case "greater_than":
+				return filters[FilterFactory.GREATER];
+			default:
+				throw new FilterException();
+		}
+	}
+
+	public Filter getDefaultFilter(){
+		return filters[FilterFactory.ALL];
 	}
 }

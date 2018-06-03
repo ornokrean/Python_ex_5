@@ -17,21 +17,22 @@ import java.util.Comparator;
 
 public class FileParsing {
 
-	Filter[] filters = new FilterFactory().createFilters();
-	Order[] orders = new OrderFactory().createFilters();
-	int currline = 1;
-	File[] files;
-	File[] currFiles;
-	boolean hadNot = false;
-	String filesPath;
-	BufferedReader f;
+	private FilterFactory filterFact = new FilterFactory();
+	private Order[] orders = new OrderFactory().createFilters();
+	private int currentLine = 1;
+	private File[] allFiles;
+	private File[] currentFiles;
+	private boolean oppositeRule = false;
+	private String filesPath;
+	private BufferedReader buffer;
 
 	public FileParsing(String file, String command) throws IOException {
-		files = new File(file).listFiles();
+		allFiles = new File(file).listFiles();
 		try {
-			f = new BufferedReader(new FileReader(command));
+			buffer = new BufferedReader(new FileReader(command));
 		} catch (IOException e) {
 			System.err.print("ERROR: Bad format of Commands File");
+			System.exit(0);
 		}
 
 	}
@@ -39,7 +40,7 @@ public class FileParsing {
 	public ArrayList<String[]> parseFile() throws IOException {
 		// open the file
 		// read the first line here, we don't want the while to read it every loop, maybe can be FIXED
-		String currentLine = f.readLine();
+		String currentLine = buffer.readLine();
 		// create sectionsArray of 4 cells
 		// create array to hold all the small sectionsArray, we don't know how much we have
 		ArrayList<String[]> sectionsArray = new ArrayList<>();
@@ -64,12 +65,12 @@ public class FileParsing {
 					System.err.print("ERROR: Bad format of Commands File\n");
 					System.exit(0);
 				}
-				currentLine = f.readLine();
+				currentLine = buffer.readLine();
 			}
 			// if the 4'th line is not a start of a new section, add it ro the sectionsArray.
 			if (currentLine != null && !currentLine.equals("FILTER")) {
 				section[3] = currentLine;
-				currentLine = f.readLine();
+				currentLine = buffer.readLine();
 			}
 			// add the section to the sections array
 			sectionsArray.add(section);
@@ -79,7 +80,7 @@ public class FileParsing {
 
 	public void filterAndOrder(ArrayList<String[]> sections) {
 		for (String[] section : sections) {
-			currFiles = files.clone();
+			currentFiles = allFiles.clone();
 			for (int i = 0; i < 4; i++) {
 				if (i == 1) {
 					String[] filter = parseLine(section[i], "#NOT");
@@ -91,24 +92,24 @@ public class FileParsing {
 					orderFiles(order);
 				}
 				if (section[i] != null)
-					currline++;
+					currentLine++;
 
 			}
-			for (File file : currFiles) {
+			for (File file : currentFiles) {
 				System.out.println(file.getName());
 			}
 		}
 	}
 
 	public String[] parseLine(String line, String notSuffix) {
-		hadNot = false;
+		oppositeRule = false;
 		if (line == null) {
 			line = "abs";
 		}
 		if (line.contains(notSuffix)) {
 			int indexToRemove = line.indexOf(notSuffix);
 			line = line.substring(0, indexToRemove);
-			hadNot = true;
+			oppositeRule = true;
 		}
 		String[] output = line.split("#");
 
@@ -117,87 +118,51 @@ public class FileParsing {
 
 	public void orderFiles(String[] line) {
 		String name = line[0];
-		Comparator comp = orders[OrderFactory.ABS];
+		Comparator<File> comparator;
 		switch (name) {
 			case "abs":
-				comp = orders[OrderFactory.ABS];
+				comparator = orders[OrderFactory.ABS];
 				break;
 			case "type":
-				comp = orders[OrderFactory.TYPE];
+				comparator = orders[OrderFactory.TYPE];
 				break;
 			case "size":
-				comp = orders[OrderFactory.SIZE];
+				comparator = orders[OrderFactory.SIZE];
 				break;
 			default:
-				System.err.print("Warning in line " + currline + "\n");
+				comparator = orders[OrderFactory.ABS];
+				System.err.print("Warning in line " + currentLine + "\n");
 				return;
 		}
-			comp = hadNot ? comp.reversed() : comp;
-
-			Arrays.sort(currFiles, comp);
+		if (oppositeRule) {
+			comparator = comparator.reversed();
 		}
 
-
+		Arrays.sort(currentFiles, comparator);
+	}
 
 
 	public void filterFiles(String[] line) {
 		String name = line[0];
 		ArrayList<File> filtered = new ArrayList<>();
-		Filter filt;
-		switch (name) {
-			case "all":
-				filt = filters[FilterFactory.ALL];
-				break;
-			case "between":
-				filt = filters[FilterFactory.BETWEEEN];
-				break;
-			case "hidden":
-				filt = filters[FilterFactory.HIDDEN];
-				break;
-			case "executable":
-				filt = filters[FilterFactory.EXECUTABLE];
-				break;
-			case "writable":
-				filt = filters[FilterFactory.WRITABLE];
-				break;
-			case "suffix":
-				filt = filters[FilterFactory.SUFFIX];
-				break;
-			case "prefix":
-				filt = filters[FilterFactory.PREFIX];
-				break;
-			case "contains":
-				filt = filters[FilterFactory.CONTAINS];
-				break;
-			case "file":
-				filt = filters[FilterFactory.NAME];
-				break;
-			case "smaller_than":
-				filt = filters[FilterFactory.SMALLER];
-				break;
-			case "greater_than":
-				filt = filters[FilterFactory.GREATER];
-				break;
-			default:
-				System.err.print("Warning in line " + currline + "\n");
-				filt = filters[FilterFactory.ALL];
-				break;
-
+		Filter filter;
+		try {
+			filter = filterFact.getFilter(name);
+		} catch (FilterException e) {
+			System.err.print("Warning in line " + currentLine + "\n");
+			filter = filterFact.getDefaultFilter();
 		}
-		for (File file : currFiles) {
-			if (!file.isDirectory()) {
-				try {
-					if (filt.passFilter(file, line) != hadNot) {
-						filtered.add(file);
-					}
-				} catch (FilterException e) {
-					System.err.print(String.format(e.getMessage(), currline));
-					break;
+		for (File file : currentFiles) {
+			try {
+				if (!file.isDirectory() && filter.passFilter(file, line) != oppositeRule) {
+					filtered.add(file);
 				}
+			} catch (FilterException e) {
+				System.err.print(String.format(e.getMessage(), currentLine));
+				break;
 			}
-
 		}
-		currFiles = filtered.toArray(new File[filtered.size()]);
+		currentFiles = filtered.toArray(new File[filtered.size()]);
 
 	}
 
