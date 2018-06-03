@@ -2,6 +2,7 @@ package filesprocessing.filters;
 
 import java.io.File;
 
+
 public class GreaterThanFilter extends Filter {
 	private static final int SIZE_FACTOR = 1024;
 
@@ -12,7 +13,7 @@ public class GreaterThanFilter extends Filter {
 			throw new FilterException();
 		}
 		long size = f.length() / SIZE_FACTOR;
-		return (bound <= size);
+		return (bound<size);
 	}
 }
 

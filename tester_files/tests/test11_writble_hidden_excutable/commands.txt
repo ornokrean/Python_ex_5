@@ -47,7 +47,7 @@ FILTER
 writable
 ORDER
 FILTER
-executable
+executable#a
 ORDER
 FILTER
 hidden

@@ -4,11 +4,11 @@ Tester for OOP, exercise 5.
 import textwrap
 from os import listdir
 # from os import startfile
-from os.path import isfile, join, isdir
+from os.path import isfile, join, isdir, exists
 from os import path
 import subprocess
 
-tester_ver = 1.2
+tester_ver = 1.3
 ASCII_ERROR = """
 ______  _______  _______  _______  _______ 
 (  ____ \(  ____ )(  ____ )(  ___  )(  ____ )
@@ -42,7 +42,8 @@ folders_of_files_to_filter = ['simple', 'complex']
 path_to_java_files = path.join("src")
 path_to_compiled_files = path.join(path_to_test_files, "compiled_files")
 path_to_DirectoryProcessor_compiled = path.join("filesprocessing.DirectoryProcessor")
-path_to_DirectoryProcessor_not_compiled = path.join(path_to_java_files, "filesprocessing",
+path_to_filesprocessing = path.join(path_to_java_files, "filesprocessing")
+path_to_DirectoryProcessor_not_compiled = path.join(path_to_filesprocessing,
                                                     "DirectoryProcessor.java")
 
 # name of files
@@ -52,6 +53,12 @@ name_of_commands_file = "commands.txt"
 name_of_school_solution_output_no_folder = "_school_solution" + "_output" + ".txt"
 name_of_school_solution_errors_no_folder = "_school_solution" + "_errors" + ".txt"
 name_of_p_file = path.join(path_to_files_to_filter, folders_of_files_to_filter[1], "99..size-8780.NHDR.png")
+
+
+def can_not_test(msg):
+    print("Error:", msg)
+    input("press Enter to exit")
+    exit(1)
 
 
 def run_with_cmd(command_list):
@@ -81,14 +88,21 @@ def compile_file():
     terminate the tester if there was an error.
     :return: true if was successful.
     """
+    if not exists(path_to_java_files) or not isdir(path_to_java_files):
+        can_not_test("You don't have the folder: " + path_to_java_files)
+    if not exists(path_to_DirectoryProcessor_not_compiled):
+        can_not_test("You don't have the file: " + path_to_DirectoryProcessor_not_compiled)
+    if not exists(path_to_filesprocessing) or not isdir(path_to_filesprocessing):
+        can_not_test("You don't have the folder: " + path_to_filesprocessing)
+    if not exists(path_to_DirectoryProcessor_not_compiled):
+        can_not_test("You don't have the file: " + path_to_DirectoryProcessor_not_compiled)
+
     command_list = ['javac', '-d', path_to_compiled_files,
                     '-cp', path_to_java_files, path_to_DirectoryProcessor_not_compiled]
 
     code, output, errors = run_with_cmd(command_list)
     if code != 0:
-        print("problem with compiling")
-        print_with_indentation("error message", errors)
-        exit(1)
+        can_not_test("problem with compiling\n"+"error message\n"+errors)
     print("compile OK\n\n")
 
 
@@ -117,6 +131,8 @@ def run_one_test(test_folder_name, files_to_filter_folder):
 
     path_to_files_to_filter_folder = path.join(path_to_files_to_filter, files_to_filter_folder)
 
+    print("starting", test_folder_name, "with data folder", files_to_filter_folder+"..")
+
     command_list = ["java", '-cp', path_to_compiled_files, path_to_DirectoryProcessor_compiled,
                     path_to_files_to_filter_folder,
                     path_to_command_file]
@@ -138,15 +154,13 @@ def run_one_test(test_folder_name, files_to_filter_folder):
     if compare_outputs is not None or compare_errors is not None:
         # compare failed
         if compare_outputs is not None:
-            print("with data:", files_to_filter_folder)
-            print("In ", test_folder_name, ", Output file compare failed: here are the details:")
+            print("Output file compare failed: here are the details:")
             print_with_indentation("output compare", compare_outputs)
         if compare_errors is not None:
-            print("with data:", files_to_filter_folder)
-            print("In ", test_folder_name, ", Errors file compare failed: here are the details:")
+            print("Errors file compare failed: here are the details:")
             print_with_indentation("errors compare", compare_errors)
         return False
-    print(test_folder_name, "with data", files_to_filter_folder, "- passed :)")
+    print("passed :)")
     return True
 
 
