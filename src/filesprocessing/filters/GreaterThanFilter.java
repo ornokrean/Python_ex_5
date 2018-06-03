@@ -4,7 +4,7 @@ import java.io.File;
 
 
 public class GreaterThanFilter extends Filter {
-	private static final int SIZE_FACTOR = 1024;
+	private static final long SIZE_FACTOR = 1024;
 
 	public boolean passFilter(File f, String[] args)  throws FilterException {
 		long bound = (long) Double.parseDouble(args[1].replace(" ",""));
