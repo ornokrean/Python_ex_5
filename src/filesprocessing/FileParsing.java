@@ -132,7 +132,7 @@ public class FileParsing {
 			default:
 				comparator = orders[OrderFactory.ABS];
 				System.err.print("Warning in line " + currentLine + "\n");
-				return;
+				break;
 		}
 		if (oppositeRule) {
 			comparator = comparator.reversed();
