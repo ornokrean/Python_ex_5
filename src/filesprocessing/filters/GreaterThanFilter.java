@@ -13,7 +13,7 @@ public class GreaterThanFilter extends Filter {
 			throw new FilterException();
 		}
 		long size = f.length() / SIZE_FACTOR;
-		return (bound<size);
+		return (bound<=size);
 	}
 }
 
