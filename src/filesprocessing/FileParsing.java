@@ -1,6 +1,6 @@
 package filesprocessing;
 
-import filesprocessing.Orders.Order;
+import filesprocessing.Orders.OrderException;
 import filesprocessing.Orders.OrderFactory;
 import filesprocessing.filters.Filter;
 import filesprocessing.filters.FilterException;
@@ -15,7 +15,7 @@ import java.util.Comparator;
 public class FileParsing {
 
 	private FilterFactory filterFact = new FilterFactory();
-	private Order[] orders = new OrderFactory().createFilters();
+	private OrderFactory orderFact = new OrderFactory();
 	private int currentLine = 1;
 	private File[] allFiles;
 	private File[] currentFiles;
@@ -118,28 +118,15 @@ public class FileParsing {
 		return output;
 	}
 
-	public void orderFiles(String[] line) {
-		String name = line[0];
+	public void orderFiles(String[] line){
+		String orderName = line[0];
 		Comparator<File> comparator;
-		switch (name) {
-			case "abs":
-				comparator = orders[OrderFactory.ABS];
-				break;
-			case "type":
-				comparator = orders[OrderFactory.TYPE];
-				break;
-			case "size":
-				comparator = orders[OrderFactory.SIZE];
-				break;
-			default:
-				comparator = orders[OrderFactory.ABS];
-				System.err.print("Warning in line " + currentLine + "\n");
-				break;
+		try {
+			comparator  = orderFact.getOrderComparator(orderName,oppositeRule);
+		} catch (OrderException e) {
+			System.err.print("Warning in line " + currentLine + "\n");
+			comparator = orderFact.getDefaultOrder();
 		}
-		if (oppositeRule) {
-			comparator = comparator.reversed();
-		}
-
 		Arrays.sort(currentFiles, comparator);
 	}
 
