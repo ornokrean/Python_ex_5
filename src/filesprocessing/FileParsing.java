@@ -91,6 +91,7 @@ public class FileParsing {
 					currentLine++;
 
 			}
+//			System.out.println("\nSECtion stArT:");
 //			for (String s: section){
 //				System.out.println(s);
 //			}
