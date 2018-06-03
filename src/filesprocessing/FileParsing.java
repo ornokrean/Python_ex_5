@@ -28,6 +28,7 @@ public class FileParsing {
 
 	public FileParsing(String file, String command) throws IOException {
 		allFiles = new File(file).listFiles();
+
 		try {
 			buffer = new BufferedReader(new FileReader(command));
 		} catch (IOException e) {
@@ -158,17 +159,12 @@ public class FileParsing {
 		for (File file : currentFiles) {
 
 			try {
-				if (!file.isDirectory() && filter.passFilter(file, line) != oppositeRule) {
+				if (filter.passFilter(file, line) != oppositeRule) {
 					filtered.add(file);
 				}
 
 			} catch (FilterException e) {
-				filter = filterFact.getDefaultFilter();
-				line = new String[1];
-				line[0] = "all";
-				if (!file.isDirectory()){
-					filtered.add(file);
-				}
+
 				System.err.print(String.format(e.getMessage(), currentLine));
 			}
 		}

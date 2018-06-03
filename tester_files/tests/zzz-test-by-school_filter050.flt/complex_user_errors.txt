@@ -1,4 +1,0 @@
-Exception in thread "main" java.lang.NullPointerException
-	at filesprocessing.FileParsing.orderFiles(FileParsing.java:135)
-	at filesprocessing.FileParsing.filterAndOrder(FileParsing.java:90)
-	at filesprocessing.DirectoryProcessor.main(DirectoryProcessor.java:14)

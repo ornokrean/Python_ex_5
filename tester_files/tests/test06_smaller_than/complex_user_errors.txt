@@ -1,9 +1,5 @@
-Exception in thread "main" java.lang.NumberFormatException: For input string: "7.6 "
-	at java.lang.NumberFormatException.forInputString(Unknown Source)
-	at java.lang.Long.parseLong(Unknown Source)
-	at java.lang.Long.parseLong(Unknown Source)
-	at filesprocessing.filters.SmallerThanFilter.passFilter(SmallerThanFilter.java:8)
-	at filesprocessing.filters.Filter.passReverse(Filter.java:12)
-	at filesprocessing.FileParsing.filterFiles(FileParsing.java:190)
-	at filesprocessing.FileParsing.filterAndOrder(FileParsing.java:85)
-	at filesprocessing.DirectoryProcessor.main(DirectoryProcessor.java:14)
+Warning in line 2 
+Warning in line 5 
+Warning in line 8 
+Warning in line 14 
+Warning in line 17 
