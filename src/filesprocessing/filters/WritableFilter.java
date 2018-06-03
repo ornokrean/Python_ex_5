@@ -7,6 +7,9 @@ public class WritableFilter extends Filter {
 		if (args.length != 2 || (!args[1].equals("NO") && !args[1].equals("YES"))) {
 			throw new FilterException();
 		}
-		return (f.canWrite() == args[1].equals("YES"));
+		if (args[1].equals("YES")){
+			return f.canWrite();
+		}
+		return (!f.canWrite());
 	}
 }

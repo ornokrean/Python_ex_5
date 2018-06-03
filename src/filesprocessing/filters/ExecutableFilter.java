@@ -7,6 +7,9 @@ public class ExecutableFilter extends Filter {
 		if (args.length != 2 || (!args[1].equals("NO") && !args[1].equals("YES"))) {
 			throw new FilterException();
 		}
-		return (f.canExecute() == args[1].equals("YES"));
+		if (args[1].equals("YES")){
+			return f.canExecute();
+		}
+		return (!f.canExecute());
 	}
 }
