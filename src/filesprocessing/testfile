@@ -1,3 +1,4 @@
 FILTER
+between#0 #4   #NOT
 ORDER
 size

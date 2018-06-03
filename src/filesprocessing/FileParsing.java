@@ -108,6 +108,7 @@ public class FileParsing {
 			hadNot = true;
 		}
 		String[] output = line.split("#");
+
 		return output;
 	}
 
