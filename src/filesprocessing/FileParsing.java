@@ -24,12 +24,7 @@ public class FileParsing {
 	private BufferedReader buffer;
 
 	public FileParsing(String file, String command) throws IOException {
-		allFiles = new File(file).listFiles(new FileFilter() {
-			@Override
-			public boolean accept(File pathname) {
-				return !pathname.isDirectory();
-			}
-		});
+		allFiles = new File(file).listFiles(pathname -> !pathname.isDirectory());
 
 		try {
 			buffer = new BufferedReader(new FileReader(command));
