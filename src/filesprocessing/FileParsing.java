@@ -93,13 +93,13 @@ public class FileParsing {
 					currentLine++;
 
 			}
-//			for (String s: section){
-//				System.out.println(s);
-//			}
+			for (String s: section){
+				System.out.println(s);
+			}
 			for (File file : currentFiles) {
 				System.out.println(file.getName());
 			}
-//			System.out.println("endfile");
+			System.out.println("endfile");
 		}
 	}
 
