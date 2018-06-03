@@ -3,6 +3,7 @@ package filesprocessing;
 import filesprocessing.Orders.Order;
 import filesprocessing.Orders.OrderFactory;
 import filesprocessing.filters.Filter;
+import filesprocessing.filters.FilterException;
 import filesprocessing.filters.FilterFactory;
 
 import java.io.BufferedReader;
@@ -146,83 +147,60 @@ public class FileParsing {
 	public void filterFiles(String[] line) {
 		String name = line[0];
 		ArrayList<File> filtered = new ArrayList<>();
-		Filter filt = null;
-		switch (name) {
-			case "all":
-				if (line.length == 1) {
+		Filter filt;
+			switch (name) {
+				case "all":
 					filt = filters[FilterFactory.ALL];
-				}
-				break;
-			case "between":
-				if (line.length == 3) {
+					break;
+				case "between":
 					filt = filters[FilterFactory.BETWEEEN];
-				}
-				break;
-			case "hidden":
-				if (line.length == 2) {
+					break;
+				case "hidden":
 					filt = filters[FilterFactory.HIDDEN];
-				}
-				break;
-			case "executable":
-				if (line.length == 2) {
+					break;
+				case "executable":
 					filt = filters[FilterFactory.EXECUTABLE];
-				}
-				break;
-			case "writable":
-				if (line.length == 2) {
+					break;
+				case "writable":
 					filt = filters[FilterFactory.WRITABLE];
-				}
-				break;
-			case "suffix":
-				if (line.length == 2) {
+					break;
+				case "suffix":
 					filt = filters[FilterFactory.SUFFIX];
-				}
-				break;
-			case "prefix":
-				if (line.length == 2) {
+					break;
+				case "prefix":
 					filt = filters[FilterFactory.PREFIX];
-				}
-				break;
-			case "contains":
-				if (line.length == 2) {
+					break;
+				case "contains":
 					filt = filters[FilterFactory.CONTAINS];
-				}
-				break;
-			case "file":
-				if (line.length == 2) {
+					break;
+				case "file":
 					filt = filters[FilterFactory.NAME];
-				}
-				break;
-			case "smaller_than":
-				if (line.length == 2) {
+					break;
+				case "smaller_than":
 					filt = filters[FilterFactory.SMALLER];
-				}
-				break;
-			case "greater_than":
-				if (line.length == 2) {
+					break;
+				case "greater_than":
 					filt = filters[FilterFactory.GREATER];
-				}
-				break;
-			default:
-				System.err.print("Warning in line " + currline + "\n");
-				filt = filters[FilterFactory.ALL];;
-		}
-		if (filt == null){
-			System.err.print("Warning in line " + currline + "\n");
-			filt = filters[FilterFactory.ALL];;
-		}
+					break;
+				default:
+					System.err.print("Warning in line " + currline + "\n");
+					filt = filters[FilterFactory.ALL];
+					break;
+
+			}
 		for (File file : currFiles) {
-			boolean pass = false;
 			if (!file.isDirectory()) {
-				if (hadNot) {
-					pass = filt.passReverse(file, line);
-				} else {
-					pass = filt.passFilter(file, line);
+				try {
+					if (filt.passFilter(file, line) != hadNot) {
+						filtered.add(file);
+					}
+				}
+				catch(FilterException e ){
+					System.err.print(String.format(e.getMessage(),currline));
+					break;
 				}
 			}
-			if (pass) {
-				filtered.add(file);
-			}
+
 		}
 		currFiles = filtered.toArray(new File[filtered.size()]);
 

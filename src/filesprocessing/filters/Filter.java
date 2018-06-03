@@ -6,11 +6,8 @@ public abstract class Filter {
 	public Filter(){
 
 	}
-	public abstract boolean passFilter(File f, String[] args);
+	public abstract boolean passFilter(File f, String[] args)  throws FilterException ;
 
-	public boolean passReverse(File f, String[] args) {
-		return !passFilter(f, args);
-	}
 
 
 }
