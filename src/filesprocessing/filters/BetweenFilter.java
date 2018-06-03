@@ -13,9 +13,6 @@ public class BetweenFilter extends Filter {
 		}
 		long size = f.length() / SIZE_FACTOR;
 
-		if (f.getName().equals("23.w.size-51623.CCA.BCB")){
-			System.out.println(f.length());
-		}
 		return (lower_bound <= size && size <= upper_bound);
 	}
 }
