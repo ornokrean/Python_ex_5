@@ -8,7 +8,12 @@ public class BetweenFilter extends Filter {
 	public boolean passFilter(File f, String[] args) throws FilterException{
 		long upper_bound = (long) Double.parseDouble(args[1].replace(" ",""));
 		long lower_bound = (long) Double.parseDouble(args[2].replace(" ",""));
+		System.out.println("srgs between :");
+		for (String s : args){
+			System.out.println(s);
 
+		}
+		System.out.println("done args");
 		if (args.length != 3 || lower_bound < 0 || upper_bound < lower_bound) {
 			throw new FilterException();
 		}
