@@ -154,6 +154,7 @@ public class FileParsing {
 				System.err.print(String.format(e.getMessage(), currentLine));
 				break;
 			}
+
 		}
 		currentFiles = catched ? currentFiles : filtered.toArray(new File[filtered.size()]);
 
