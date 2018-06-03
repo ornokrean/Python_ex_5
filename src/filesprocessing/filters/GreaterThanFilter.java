@@ -8,7 +8,6 @@ public class GreaterThanFilter extends Filter {
 
 	public boolean passFilter(File file, String[] args)  throws FilterException {
 		double bound =  Double.parseDouble(args[1].replace(" ",""));
-
 		if (args.length != 2 || bound < 0) {
 			throw new FilterException();
 		}

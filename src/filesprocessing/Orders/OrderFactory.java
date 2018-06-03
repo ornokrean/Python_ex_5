@@ -7,7 +7,7 @@ public class OrderFactory {
 	public final static int ABS = 0;
 	public final static int SIZE = 1;
 	public final static int TYPE = 2;
-	public final static int DEFAULT_COMPERATOR = ABS;
+	public final static int DEFAULT_COMPARATOR = ABS;
 
 	public static Order[] orders = new Order[3];
 
@@ -39,7 +39,7 @@ public class OrderFactory {
 	}
 
 	public Comparator<File> getDefaultOrder() {
-		return orders[OrderFactory.DEFAULT_COMPERATOR];
+		return orders[OrderFactory.DEFAULT_COMPARATOR];
 	}
 }
 

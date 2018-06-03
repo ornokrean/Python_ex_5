@@ -6,7 +6,10 @@ import filesprocessing.filters.Filter;
 import filesprocessing.filters.FilterException;
 import filesprocessing.filters.FilterFactory;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -28,7 +31,7 @@ public class FileParsing {
 		try {
 			buffer = new BufferedReader(new FileReader(command));
 		} catch (IOException e) {
-			System.err.print("ERROR: Bad format of Commands File");
+			System.err.print("ERROR: Bad format of Commands File\n");
 			System.exit(0);
 		}
 
@@ -91,14 +94,10 @@ public class FileParsing {
 					currentLine++;
 
 			}
-//			System.out.println("\nSECtion stArT:");
-//			for (String s: section){
-//				System.out.println(s);
-//			}
+
 			for (File file : currentFiles) {
 				System.out.println(file.getName());
 			}
-//			System.out.println("endfile");
 		}
 	}
 
@@ -117,11 +116,11 @@ public class FileParsing {
 		return output;
 	}
 
-	public void orderFiles(String[] line){
+	public void orderFiles(String[] line) {
 		String orderName = line[0];
 		Comparator<File> comparator;
 		try {
-			comparator  = orderFact.getOrderComparator(orderName,oppositeRule);
+			comparator = orderFact.getOrderComparator(orderName, oppositeRule);
 		} catch (OrderException e) {
 			System.err.print(String.format(e.getMessage(), currentLine));
 			comparator = orderFact.getDefaultOrder();
@@ -156,7 +155,7 @@ public class FileParsing {
 				break;
 			}
 		}
-			currentFiles = catched ? currentFiles: filtered.toArray(new File[filtered.size()]);
+		currentFiles = catched ? currentFiles : filtered.toArray(new File[filtered.size()]);
 
 	}
 

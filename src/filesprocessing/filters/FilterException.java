@@ -6,7 +6,8 @@ public class FilterException extends Exception {
 	public FilterException() {
 		super("Warning in line %d \n");
 	}
-	public FilterException(String s){
+
+	public FilterException(String s) {
 		super(s);
 	}
 
