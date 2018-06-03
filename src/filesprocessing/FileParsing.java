@@ -152,7 +152,7 @@ public class FileParsing {
 			filter = filterFact.getDefaultFilter();
 
 		}
-
+		boolean catched = false;
 		for (File file : currentFiles) {
 
 			try {
@@ -161,11 +161,12 @@ public class FileParsing {
 				}
 
 			} catch (FilterException e) {
+				catched = true;
 				System.err.print(String.format(e.getMessage(), currentLine));
 				break;
 			}
 		}
-		currentFiles = filtered.toArray(new File[filtered.size()]);
+			currentFiles = catched ? currentFiles: filtered.toArray(new File[filtered.size()]);
 
 	}
 
