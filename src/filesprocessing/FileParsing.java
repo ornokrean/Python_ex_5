@@ -6,10 +6,7 @@ import filesprocessing.filters.Filter;
 import filesprocessing.filters.FilterException;
 import filesprocessing.filters.FilterFactory;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -27,7 +24,12 @@ public class FileParsing {
 	private BufferedReader buffer;
 
 	public FileParsing(String file, String command) throws IOException {
-		allFiles = new File(file).listFiles();
+		allFiles = new File(file).listFiles(new FileFilter() {
+			@Override
+			public boolean accept(File pathname) {
+				return !pathname.isDirectory();
+			}
+		});
 
 		try {
 			buffer = new BufferedReader(new FileReader(command));
@@ -164,8 +166,8 @@ public class FileParsing {
 				}
 
 			} catch (FilterException e) {
-
 				System.err.print(String.format(e.getMessage(), currentLine));
+				break;
 			}
 		}
 		currentFiles = filtered.toArray(new File[filtered.size()]);
