@@ -20,7 +20,6 @@ public class FileParsing {
 	private File[] allFiles;
 	private File[] currentFiles;
 	private boolean oppositeRule = false;
-	private String filesPath;
 	private BufferedReader buffer;
 
 	public FileParsing(String file, String command) throws IOException {
@@ -83,7 +82,6 @@ public class FileParsing {
 				if (i == 1) {
 					String[] filter = parseLine(section[i], "#NOT");
 					filterFiles(filter);
-
 				}
 				if (i == 3) {
 					String[] order = parseLine(section[i], "#REVERSE");
@@ -124,7 +122,7 @@ public class FileParsing {
 		try {
 			comparator  = orderFact.getOrderComparator(orderName,oppositeRule);
 		} catch (OrderException e) {
-			System.err.print("Warning in line " + currentLine + "\n");
+			System.err.print(String.format(e.getMessage(), currentLine));
 			comparator = orderFact.getDefaultOrder();
 		}
 		Arrays.sort(currentFiles, comparator);
@@ -139,7 +137,7 @@ public class FileParsing {
 		try {
 			filter = filterFact.getFilter(name);
 		} catch (FilterException e) {
-			System.err.print("Warning in line " + currentLine + "\n");
+			System.err.print(String.format(e.getMessage(), currentLine));
 			filter = filterFact.getDefaultFilter();
 
 		}

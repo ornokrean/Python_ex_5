@@ -7,15 +7,17 @@ public class OrderFactory {
 	public final static int ABS = 0;
 	public final static int SIZE = 1;
 	public final static int TYPE = 2;
+	public final static int DEFAULT_COMPERATOR = ABS;
 
 	public static Order[] orders = new Order[3];
 
-	public OrderFactory(){
+	public OrderFactory() {
 		orders[ABS] = new AbsOrder();
 		orders[SIZE] = new SizeOrder();
 		orders[TYPE] = new TypeOrder();
 	}
-	public Comparator<File> getOrderComparator(String order, boolean oppositeRule) throws OrderException{
+
+	public Comparator<File> getOrderComparator(String order, boolean oppositeRule) throws OrderException {
 		Comparator<File> comparator;
 		switch (order) {
 			case "abs":
@@ -35,8 +37,9 @@ public class OrderFactory {
 		}
 		return comparator;
 	}
-	public Comparator<File> getDefaultOrder(){
-		return orders[OrderFactory.ABS];
+
+	public Comparator<File> getDefaultOrder() {
+		return orders[OrderFactory.DEFAULT_COMPERATOR];
 	}
 }
 
