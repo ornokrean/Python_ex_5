@@ -89,7 +89,8 @@ public class FileParsing {
 					String[] order = parseLine(section[i], "#REVERSE");
 					orderFiles(order);
 				}
-				currline++;
+				if (section[i] != null)
+						currline++;
 
 			}
 			for (File file : currFiles) {
