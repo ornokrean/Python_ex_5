@@ -18,7 +18,7 @@ public class FileParsing {
 
 	Filter[] filters = new FilterFactory().createFilters();
 	Order[] orders = new OrderFactory().createFilters();
-	int currline = 2;
+	int currline = 1;
 	File[] files;
 	File[] currFiles;
 	boolean hadNot = false;
@@ -79,7 +79,7 @@ public class FileParsing {
 	public void filterAndOrder(ArrayList<String[]> sections) {
 		for (String[] section : sections) {
 			currFiles = files.clone();
-			for (int i = 1; i < 4; i += 2) {
+			for (int i = 1; i < 4; i ++) {
 				if (i == 1) {
 					String[] filter = parseLine(section[i], "#NOT");
 					filterFiles(filter);
@@ -89,7 +89,8 @@ public class FileParsing {
 					String[] order = parseLine(section[i], "#REVERSE");
 					orderFiles(order);
 				}
-				currline += 2;
+				currline++;
+
 			}
 			for (File file : currFiles) {
 				System.out.println(file.getName());
