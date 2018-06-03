@@ -3,7 +3,7 @@ package filesprocessing.filters;
 import java.io.File;
 
 public class BetweenFilter extends Filter {
-	private static final long SIZE_FACTOR = 1024;
+	private static final double SIZE_FACTOR = 1024.0;
 
 	public boolean passFilter(File f, String[] args) throws FilterException{
 		long upper_bound = (long) Double.parseDouble(args[2].replace(" ",""));
@@ -11,7 +11,7 @@ public class BetweenFilter extends Filter {
 		if (args.length != 3 || lower_bound < 0 || upper_bound < lower_bound) {
 			throw new FilterException();
 		}
-		long size = f.length() / SIZE_FACTOR;
+		double size = f.length() / SIZE_FACTOR;
 
 		return (lower_bound <= size && size <= upper_bound);
 	}
