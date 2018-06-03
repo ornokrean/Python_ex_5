@@ -143,6 +143,7 @@ public class FileParsing {
 
 
 	public void filterFiles(String[] line) {
+
 		String name = line[0];
 		ArrayList<File> filtered = new ArrayList<>();
 		Filter filter;
@@ -153,14 +154,22 @@ public class FileParsing {
 			filter = filterFact.getDefaultFilter();
 
 		}
+
 		for (File file : currentFiles) {
+
 			try {
 				if (!file.isDirectory() && filter.passFilter(file, line) != oppositeRule) {
 					filtered.add(file);
 				}
+
 			} catch (FilterException e) {
+				filter = filterFact.getDefaultFilter();
+				line = new String[1];
+				line[0] = "all";
+				if (!file.isDirectory()){
+					filtered.add(file);
+				}
 				System.err.print(String.format(e.getMessage(), currentLine));
-				break;
 			}
 		}
 		currentFiles = filtered.toArray(new File[filtered.size()]);
