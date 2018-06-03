@@ -606,7 +606,6 @@ same_name_c.txt
 66.w.size-54702.BBC.BCC
 67..size-39588.ABB.CCC
 68.w.size-29309.BBA.BCC
-69.w.size-7741.ABC.CBB
 7.w.size-44158.CBC.ACC
 70.w.size-25645.AAC.ABB
 71..size-58916.CCB.AAA
@@ -1413,7 +1412,6 @@ same_name_c.txt
 66.w.size-54702.BBC.BCC
 67..size-39588.ABB.CCC
 68.w.size-29309.BBA.BCC
-69.w.size-7741.ABC.CBB
 7.w.size-44158.CBC.ACC
 70.w.size-25645.AAC.ABB
 71..size-58916.CCB.AAA

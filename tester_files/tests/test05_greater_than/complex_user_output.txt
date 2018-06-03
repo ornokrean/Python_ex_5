@@ -508,6 +508,7 @@ same_name_c.txt
 37.w.size-106.ABA.CBB
 5.w.size-4812.BCC.BBC
 60..size-6823.BAB.BBA
+69.w.size-7741.ABC.CBB
 79..size-6875.ABC.BCB
 Same_a.txt
 file0.a
@@ -877,6 +878,7 @@ file8.txt
 37.w.size-106.ABA.CBB
 5.w.size-4812.BCC.BBC
 60..size-6823.BAB.BBA
+69.w.size-7741.ABC.CBB
 79..size-6875.ABC.BCB
 Same_a.txt
 file0.a
