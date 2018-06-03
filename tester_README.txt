@@ -1,6 +1,7 @@
-version 1.2
+version 1.3
 
 created by Evyatar and Mazya
+Special thanks to Mr. Idan Gabay and Mr. David Nir for the QA
 
 installation:
 1. extract the folder "tester_files" and the files "run_tester" and "tester_python" to your ex5 folder (next to 'src')
@@ -28,3 +29,5 @@ commants:
 * I don't now if it will run on linux or mac
 * I seperated the out.print and the err.print to 2 files (python did it for me), no order between them is checked.
 * we have two data folders, 'simple' and 'complex', I added the school's files to them and added new files.
+
+Please answer this google form: https://goo.gl/forms/vLuZS5dirlPxMwwv2
