@@ -19,6 +19,7 @@ same_name_c.txt
 37.w.size-106.ABA.CBB
 114..size-319.BBA.BAB
 14.w.size-811.BAA.BAB
+23.w.size-51623.CCA.BCB
 9.w.size-52359.BCB.CAC
 90.w.size-52541.ACC.CCA
 94.w.size-52695.BCC.CAB

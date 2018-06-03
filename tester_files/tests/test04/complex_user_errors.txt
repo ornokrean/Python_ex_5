@@ -1,2 +1,2 @@
-Warning in line 2
-Warning in line 6
+Warning in line 2 
+Warning in line 6 
