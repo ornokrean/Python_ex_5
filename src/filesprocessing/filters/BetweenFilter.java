@@ -12,6 +12,7 @@ public class BetweenFilter extends Filter {
 			throw new FilterException();
 		}
 		long size = f.length() / SIZE_FACTOR;
-		return (lower_bound <= size && size <= upper_bound);
+
+		return (lower_bound < size && size < upper_bound);
 	}
 }
