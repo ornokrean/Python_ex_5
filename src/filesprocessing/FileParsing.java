@@ -79,7 +79,7 @@ public class FileParsing {
 	public void filterAndOrder(ArrayList<String[]> sections) {
 		for (String[] section : sections) {
 			currFiles = files.clone();
-			for (int i = 1; i < 4; i ++) {
+			for (int i = 0; i < 4; i ++) {
 				if (i == 1) {
 					String[] filter = parseLine(section[i], "#NOT");
 					filterFiles(filter);
