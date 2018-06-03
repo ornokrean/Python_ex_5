@@ -7,6 +7,7 @@ public class AllFilter  extends Filter {
 		if (args.length != 1) {
 			throw new FilterException();
 		}
+
 		return (!f.isDirectory());
 	}
 }
