@@ -1,4 +1,4 @@
 FILTER
-between#2#50
+between#0#500000
 ORDER
-size
+size#REVERSE

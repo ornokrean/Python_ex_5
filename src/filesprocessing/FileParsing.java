@@ -31,7 +31,7 @@ public class FileParsing {
 		try {
 			f = new BufferedReader(new FileReader(command));
 		} catch (IOException e) {
-			System.err.print("error  : command file is not good *FIX THIS MESSAGE*");
+			System.err.print("ERROR: Bad format of Commands File");
 		}
 
 	}
@@ -80,7 +80,7 @@ public class FileParsing {
 	public void filterAndOrder(ArrayList<String[]> sections) {
 		for (String[] section : sections) {
 			currFiles = files.clone();
-			for (int i = 0; i < 4; i ++) {
+			for (int i = 0; i < 4; i++) {
 				if (i == 1) {
 					String[] filter = parseLine(section[i], "#NOT");
 					filterFiles(filter);
@@ -91,7 +91,7 @@ public class FileParsing {
 					orderFiles(order);
 				}
 				if (section[i] != null)
-						currline++;
+					currline++;
 
 			}
 			for (File file : currFiles) {
@@ -117,86 +117,81 @@ public class FileParsing {
 
 	public void orderFiles(String[] line) {
 		String name = line[0];
-		Comparator comp;
-		if (name == null)
-			comp = orders[OrderFactory.ABS];
-		else {
-			switch (name) {
-				case "abs":
-					comp = orders[OrderFactory.ABS];
-					break;
-				case "type":
-					comp = orders[OrderFactory.TYPE];
-					break;
-				case "size":
-					comp = orders[OrderFactory.SIZE];
-					break;
-				default:
-					System.err.print("Warning in line " + currline + "\n");
-					return;
-			}
-			if (hadNot) {
-				comp = comp.reversed();
-			}
+		Comparator comp = orders[OrderFactory.ABS];
+		switch (name) {
+			case "abs":
+				comp = orders[OrderFactory.ABS];
+				break;
+			case "type":
+				comp = orders[OrderFactory.TYPE];
+				break;
+			case "size":
+				comp = orders[OrderFactory.SIZE];
+				break;
+			default:
+				System.err.print("Warning in line " + currline + "\n");
+				return;
+		}
+			comp = hadNot ? comp.reversed() : comp;
+
 			Arrays.sort(currFiles, comp);
 		}
 
-	}
+
 
 
 	public void filterFiles(String[] line) {
 		String name = line[0];
 		ArrayList<File> filtered = new ArrayList<>();
 		Filter filt;
-			switch (name) {
-				case "all":
-					filt = filters[FilterFactory.ALL];
-					break;
-				case "between":
-					filt = filters[FilterFactory.BETWEEEN];
-					break;
-				case "hidden":
-					filt = filters[FilterFactory.HIDDEN];
-					break;
-				case "executable":
-					filt = filters[FilterFactory.EXECUTABLE];
-					break;
-				case "writable":
-					filt = filters[FilterFactory.WRITABLE];
-					break;
-				case "suffix":
-					filt = filters[FilterFactory.SUFFIX];
-					break;
-				case "prefix":
-					filt = filters[FilterFactory.PREFIX];
-					break;
-				case "contains":
-					filt = filters[FilterFactory.CONTAINS];
-					break;
-				case "file":
-					filt = filters[FilterFactory.NAME];
-					break;
-				case "smaller_than":
-					filt = filters[FilterFactory.SMALLER];
-					break;
-				case "greater_than":
-					filt = filters[FilterFactory.GREATER];
-					break;
-				default:
-					System.err.print("Warning in line " + currline + "\n");
-					filt = filters[FilterFactory.ALL];
-					break;
+		switch (name) {
+			case "all":
+				filt = filters[FilterFactory.ALL];
+				break;
+			case "between":
+				filt = filters[FilterFactory.BETWEEEN];
+				break;
+			case "hidden":
+				filt = filters[FilterFactory.HIDDEN];
+				break;
+			case "executable":
+				filt = filters[FilterFactory.EXECUTABLE];
+				break;
+			case "writable":
+				filt = filters[FilterFactory.WRITABLE];
+				break;
+			case "suffix":
+				filt = filters[FilterFactory.SUFFIX];
+				break;
+			case "prefix":
+				filt = filters[FilterFactory.PREFIX];
+				break;
+			case "contains":
+				filt = filters[FilterFactory.CONTAINS];
+				break;
+			case "file":
+				filt = filters[FilterFactory.NAME];
+				break;
+			case "smaller_than":
+				filt = filters[FilterFactory.SMALLER];
+				break;
+			case "greater_than":
+				filt = filters[FilterFactory.GREATER];
+				break;
+			default:
+				System.err.print("Warning in line " + currline + "\n");
+				filt = filters[FilterFactory.ALL];
+				break;
 
-			}
+		}
 		for (File file : currFiles) {
 			if (!file.isDirectory()) {
 				try {
 					if (filt.passFilter(file, line) != hadNot) {
 						filtered.add(file);
 					}
-				}
-				catch(FilterException e ){
-					System.err.print(String.format(e.getMessage(),currline));
+				} catch (FilterException e) {
+					System.err.print(String.format(e.getMessage(), currline));
 					break;
 				}
 			}
