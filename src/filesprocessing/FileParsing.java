@@ -151,6 +151,7 @@ public class FileParsing {
 		} catch (FilterException e) {
 			System.err.print("Warning in line " + currentLine + "\n");
 			filter = filterFact.getDefaultFilter();
+
 		}
 		for (File file : currentFiles) {
 			try {
