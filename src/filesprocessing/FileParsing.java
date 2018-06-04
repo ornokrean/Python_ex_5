@@ -32,7 +32,7 @@ public class FileParsing {
 			buffer = new BufferedReader(new FileReader(command));
 		} catch (IOException e) {
 			System.err.print("ERROR: Bad format of Commands File\n");
-			System.exit(0);
+			return;
 		}
 
 	}
@@ -55,15 +55,17 @@ public class FileParsing {
 				if (currentLine != null) {
 					if (i == 0 && !currentLine.equals("FILTER")) {
 						System.err.print("ERROR: Bad subsection name\n");
-						System.exit(0);
+						return null;
+
 					}
 					if (i == 2 && !currentLine.equals("ORDER")) {
 						System.err.print("ERROR: Bad subsection name\n");
-						System.exit(0);
+						return null;
+
 					}
 				} else if (i == 2) {
 					System.err.print("ERROR: Bad format of Commands File\n");
-					System.exit(0);
+					return null;
 				}
 				currentLine = buffer.readLine();
 			}
@@ -136,10 +138,10 @@ public class FileParsing {
 		Filter filter;
 		try {
 			filter = filterFact.getFilter(name);
+			boolean tryFilter = filter.passFilter(currentFiles[0], line);
 		} catch (FilterException e) {
 			System.err.print(String.format(e.getMessage(), currentLine));
 			filter = filterFact.getDefaultFilter();
-
 		}
 		boolean catched = false;
 		for (File file : currentFiles) {
@@ -150,13 +152,11 @@ public class FileParsing {
 				}
 
 			} catch (FilterException e) {
-				catched = true;
-				System.err.print(String.format(e.getMessage(), currentLine));
 				break;
 			}
 
 		}
-		currentFiles = catched ? currentFiles : filtered.toArray(new File[filtered.size()]);
+		currentFiles = filtered.toArray(new File[filtered.size()]);
 
 	}
 

@@ -2,6 +2,7 @@ package filesprocessing.filters;
 
 import java.io.File;
 
+
 public abstract class Filter {
 	public Filter() {
 
