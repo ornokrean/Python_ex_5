@@ -138,7 +138,6 @@ public class FileParsing {
 		Filter filter;
 		try {
 			filter = filterFact.getFilter(name);
-			boolean tryFilter = filter.passFilter(currentFiles[0], line);
 		} catch (FilterException e) {
 			System.err.print(String.format(e.getMessage(), currentLine));
 			filter = filterFact.getDefaultFilter();
@@ -152,8 +151,9 @@ public class FileParsing {
 				}
 
 			} catch (FilterException e) {
+
 				catched = true;
-//				System.err.print(String.format(e.getMessage(), currentLine));
+				System.err.print(String.format(e.getMessage(), currentLine));
 				break;
 			}
 
