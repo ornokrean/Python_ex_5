@@ -152,11 +152,13 @@ public class FileParsing {
 				}
 
 			} catch (FilterException e) {
+				catched = true;
+//				System.err.print(String.format(e.getMessage(), currentLine));
 				break;
 			}
 
 		}
-		currentFiles = filtered.toArray(new File[filtered.size()]);
+		currentFiles = catched ? currentFiles : filtered.toArray(new File[filtered.size()]);
 
 	}
 
