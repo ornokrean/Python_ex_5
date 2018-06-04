@@ -16,17 +16,17 @@ import java.util.Comparator;
 
 
 public class FileParsing {
-
+	String[] defaultLine = {"all"};
 	private FilterFactory filterFact = new FilterFactory();
 	private OrderFactory orderFact = new OrderFactory();
 	private int currentLine = 1;
-	private File[] allFiles;
 	private File[] currentFiles;
 	private boolean oppositeRule = false;
 	private BufferedReader buffer;
+	String file;
 
 	public FileParsing(String file, String command) throws IOException {
-		allFiles = new File(file).listFiles(pathname -> !pathname.isDirectory());
+		this.file = file;
 
 		try {
 			buffer = new BufferedReader(new FileReader(command));
@@ -82,7 +82,6 @@ public class FileParsing {
 
 	public void filterAndOrder(ArrayList<String[]> sections) {
 		for (String[] section : sections) {
-			currentFiles = allFiles.clone();
 			for (int i = 0; i < 4; i++) {
 				if (i == 1) {
 					String[] filter = parseLine(section[i], "#NOT");
@@ -131,33 +130,32 @@ public class FileParsing {
 	}
 
 
-	public void filterFiles(String[] line) {
+	public void filterFiles(String[] line){
 
 		String name = line[0];
 		ArrayList<File> filtered = new ArrayList<>();
 		Filter filter;
 		try {
 			filter = filterFact.getFilter(name);
-			boolean tryFilter = filter.passFilter(currentFiles[0], line);
+			filter.checkCommand(line);
 		} catch (FilterException e) {
 			System.err.print(String.format(e.getMessage(), currentLine));
 			filter = filterFact.getDefaultFilter();
+			line = defaultLine;
+			oppositeRule = false;
 		}
-		for (File file : currentFiles) {
+		final Filter filtera = filter;
+		final String[] command = line;
 
-			try {
-				if (filter.passFilter(file, line) != oppositeRule) {
-					filtered.add(file);
-				}
+		currentFiles = new File(file).listFiles(pathname -> !pathname.isDirectory() && (filtera.passFilter(pathname,
+					command) != oppositeRule));
 
-			} catch (FilterException e) {
-				break;
-			}
 
-		}
-		currentFiles = filtered.toArray(new File[filtered.size()]);
 
 	}
+
+
+
 
 
 }
