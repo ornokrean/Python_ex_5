@@ -138,11 +138,11 @@ public class FileParsing {
 		Filter filter;
 		try {
 			filter = filterFact.getFilter(name);
+			boolean tryFilter = filter.passFilter(currentFiles[0], line);
 		} catch (FilterException e) {
 			System.err.print(String.format(e.getMessage(), currentLine));
 			filter = filterFact.getDefaultFilter();
 		}
-		boolean catched = false;
 		for (File file : currentFiles) {
 
 			try {
@@ -151,14 +151,11 @@ public class FileParsing {
 				}
 
 			} catch (FilterException e) {
-
-				catched = true;
-				System.err.print(String.format(e.getMessage(), currentLine));
 				break;
 			}
 
 		}
-		currentFiles = catched ? currentFiles : filtered.toArray(new File[filtered.size()]);
+		currentFiles = filtered.toArray(new File[filtered.size()]);
 
 	}
 
