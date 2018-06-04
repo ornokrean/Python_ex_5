@@ -143,7 +143,6 @@ public class FileParsing {
 			System.err.print(String.format(e.getMessage(), currentLine));
 			filter = filterFact.getDefaultFilter();
 		}
-		boolean catched = false;
 		for (File file : currentFiles) {
 
 			try {
@@ -152,13 +151,11 @@ public class FileParsing {
 				}
 
 			} catch (FilterException e) {
-				catched = true;
-//				System.err.print(String.format(e.getMessage(), currentLine));
 				break;
 			}
 
 		}
-		currentFiles = catched ? currentFiles : filtered.toArray(new File[filtered.size()]);
+		currentFiles = filtered.toArray(new File[filtered.size()]);
 
 	}
 
