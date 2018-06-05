@@ -2,7 +2,7 @@ package filesprocessing.filters;
 
 import java.io.File;
 
-public class NameFilter  extends Filter{
+public class FileNameFilter extends Filter{
 	public boolean passFilter(File file, String[] args) {
 
 		return (file.getName().equals(args[1]));

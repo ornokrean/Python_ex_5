@@ -1,4 +1,4 @@
 FILTER
-prefix#file#NOT
+prefix#filesPath#NOT
 ORDER
 abs#REVERSE

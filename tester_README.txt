@@ -18,7 +18,7 @@ how to use:
 3. If you want, you open and see your output and error files - 
 	to do so, go to 'tester_files/tests' and there there will be of the tests.
 	In each folder there are 9 files:
-		a. commands - the commands file
+		a. commands - the commands filesPath
 		b. files that was created by the school solution (both data folders, output and errors)
 		c. files that was created by your code (both data folders, output and errors)
 				(by default the user files are my files, but after first use of the tester, your files will override them)

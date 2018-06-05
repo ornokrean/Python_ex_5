@@ -8,11 +8,11 @@ FILTER
 contains#CA
 ORDER
 FILTER
-file#5.size-594.CC.ABA
+filesPath#5.size-594.CC.ABA
 ORDER
 FILTER
-file#8
+filesPath#8
 ORDER
 FILTER
-file#8#NOT
+filesPath#8#NOT
 ORDER

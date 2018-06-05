@@ -1,8 +1,8 @@
 FILTER
-file#file
+filesPath#filesPath
 ORDER
 size
 FILTER
-file#file0.txt
+filesPath#file0.txt
 ORDER
 size

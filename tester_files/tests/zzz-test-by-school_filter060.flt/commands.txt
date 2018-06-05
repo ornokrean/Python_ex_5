@@ -1,10 +1,10 @@
 FILTER
-prefix#file 
+prefix#filesPath
 ORDER
 FILTER
 suffix#a.txt
 ORDER
-file
+filesPath
 FILTER
 executable#YES
 ORDER

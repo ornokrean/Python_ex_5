@@ -1,5 +1,5 @@
 FILTER
-prefix#file
+prefix#filesPath
 ORDER
 type
 FILTER

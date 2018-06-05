@@ -1,25 +1,46 @@
 package filesprocessing.filters;
 
 public class FilterFactory {
-	public final static int SMALLER = 0;
-	public final static int GREATER = 1;
-	public final static int BETWEEN = 2;
-	public final static int NAME = 3;
-	public final static int CONTAINS = 4;
-	public final static int PREFIX = 5;
-	public final static int SUFFIX = 6;
-	public final static int WRITABLE = 7;
-	public final static int EXECUTABLE = 8;
-	public final static int HIDDEN = 9;
-	public final static int ALL = 10;
-	public final static int DEFAULT_FILTER = ALL;
-	public static Filter[] filters = new Filter[11];
+	public final static String NOT_SUFFIX = "#NOT";
+
+
+	private final static String SMALLER_FILTER_NAME = "smaller_than";
+	private final static String GREATER_FILTER_NAME = "greater_than";
+	private final static String BETWEEN_FILTER_NAME = "between";
+	private final static String FILE_FILTER_NAME = "file";
+	private final static String CONTAINS_FILTER_NAME = "contains";
+	private final static String PREFIX_FILTER_NAME = "prefix";
+	private final static String SUFFIX_FILTER_NAME = "suffix";
+	private final static String WRITABLE_FILTER_NAME = "writable";
+	private final static String EXECUTABLE_FILTER_NAME = "executable";
+	private final static String HIDDEN_FILTER_NAME = "hidden";
+	private final static String ALL_FILTER_NAME = "all";
+
+	private final static int SMALLER = 0;
+	private final static int GREATER = 1;
+	private final static int BETWEEN = 2;
+	private final static int FILE = 3;
+	private final static int CONTAINS = 4;
+	private final static int PREFIX = 5;
+	private final static int SUFFIX = 6;
+	private final static int WRITABLE = 7;
+	private final static int EXECUTABLE = 8;
+	private final static int HIDDEN = 9;
+	private final static int ALL = 10;
+
+
+
+	private final static int DEFAULT_FILTER = ALL;
+	public final static String DEFAULT_FILTER_NAME = ALL_FILTER_NAME;
+
+
+	private static Filter[] filters = new Filter[11];
 
 	public FilterFactory() {
 		filters[SMALLER] = new SmallerThanFilter();
 		filters[GREATER] = new GreaterThanFilter();
 		filters[BETWEEN] = new BetweenFilter();
-		filters[NAME] = new NameFilter();
+		filters[FILE] = new FileNameFilter();
 		filters[CONTAINS] = new ContainsFilter();
 		filters[PREFIX] = new PrefixFilter();
 		filters[SUFFIX] = new SuffixFilter();
@@ -31,27 +52,27 @@ public class FilterFactory {
 
 	public Filter getFilter(String filterName) throws FilterException {
 		switch (filterName) {
-			case "all":
+			case ALL_FILTER_NAME:
 				return filters[FilterFactory.ALL];
-			case "between":
+			case BETWEEN_FILTER_NAME:
 				return filters[FilterFactory.BETWEEN];
-			case "hidden":
+			case HIDDEN_FILTER_NAME:
 				return filters[FilterFactory.HIDDEN];
-			case "executable":
+			case EXECUTABLE_FILTER_NAME:
 				return filters[FilterFactory.EXECUTABLE];
-			case "writable":
+			case WRITABLE_FILTER_NAME:
 				return filters[FilterFactory.WRITABLE];
-			case "suffix":
+			case SUFFIX_FILTER_NAME:
 				return filters[FilterFactory.SUFFIX];
-			case "prefix":
+			case PREFIX_FILTER_NAME:
 				return filters[FilterFactory.PREFIX];
-			case "contains":
+			case CONTAINS_FILTER_NAME:
 				return filters[FilterFactory.CONTAINS];
-			case "file":
-				return filters[FilterFactory.NAME];
-			case "smaller_than":
+			case FILE_FILTER_NAME:
+				return filters[FilterFactory.FILE];
+			case SMALLER_FILTER_NAME:
 				return filters[FilterFactory.SMALLER];
-			case "greater_than":
+			case GREATER_FILTER_NAME:
 				return filters[FilterFactory.GREATER];
 			default:
 				throw new FilterException();
