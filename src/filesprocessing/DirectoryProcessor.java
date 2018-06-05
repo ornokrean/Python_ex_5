@@ -11,15 +11,22 @@ public class DirectoryProcessor {
 		// get the command file and process it into sections.
 //		String args1= "/Users/or/Desktop/CS/Java/ex5/tester_files/files_to_filter/complex";
 //		String args2= "/Users/or/Desktop/CS/Java/ex5/src/filesprocessing/testfile";
-		FileParsing fileParse = new FileParsing(args[0],args[1]);
+		try {
+			FileParsing fileParse = new FileParsing(args[0], args[1]);
+			//		FileParsing fileParse = new FileParsing(args1,args2);
 
-//		FileParsing fileParse = new FileParsing(args1,args2);
+			ArrayList<String[]> sections = fileParse.parseFile();
+			if (sections == null){
+				return;
+			}
+			fileParse.filterAndOrder(sections);
 
-		ArrayList<String[]> sections = fileParse.parseFile();
-		if (sections == null){
-			return;
 		}
-		fileParse.filterAndOrder(sections);
+		catch (TypeTwoException e){
+			System.err.println(e.getMessage());
+		}
+
+
 
 	}
 

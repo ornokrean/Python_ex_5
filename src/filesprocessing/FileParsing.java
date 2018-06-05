@@ -39,25 +39,27 @@ public class FileParsing {
 	private BufferedReader buffer;
 	private String filesPath;
 
-	public FileParsing(String filesPath, String command) throws IOException {
+	public FileParsing(String filesPath, String command) throws TypeTwoException {
 		this.filesPath = filesPath;
 
 		try {
 			buffer = new BufferedReader(new FileReader(command));
 		} catch (IOException e) {
-			System.err.print("ERROR: Bad format of Commands File\n");
-			return;
+			throw new SubsectionException();
 		}
 
 	}
 
-	public ArrayList<String[]> parseFile() throws IOException {
-		// open the filesPath
+	public ArrayList<String[]> parseFile() throws TypeTwoException,IOException {
+
+		// create array to hold all the small sectionsArray, we don't know how much we have, each oe is
+		// section
+		ArrayList<String[]> sectionsArray = new ArrayList<>();
+
+		// open the command file
 		// read the first line here, we don't want the while to read it every loop, maybe can be FIXED
 		String commandLine = buffer.readLine();
-		// create sectionsArray of 4 cells
-		// create array to hold all the small sectionsArray, we don't know how much we have
-		ArrayList<String[]> sectionsArray = new ArrayList<>();
+
 
 
 		while (commandLine != null) {
@@ -66,12 +68,8 @@ public class FileParsing {
 			for (int i = 0; i < 3; i++) {
 				section[i] = commandLine;
 				//checking for type II errors.
-				try {
 					validateLine(commandLine, i);
-				} catch (TypeTwoException e) {
-					System.err.println(e.getMessage());
-					return null;
-				}
+
 				commandLine = buffer.readLine();
 			}
 			// if the 4'th line is not a start of a new section, add it ro the sectionsArray.
