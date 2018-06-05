@@ -16,14 +16,25 @@ import java.util.Comparator;
 
 
 public class FileParsing {
-	private static final String FILTER_HEADER = "FILTER";
-	private static final String ORDER_HEADER = "FILTER";
+	private static final int FILTER_HEADER_INDEX = 0;
+	private static final int FILTER_ROW_INDEX = 1;
+	private static final int ORDER_HEADER_INDEX = 2;
+	private static final int ORDER_ROW_INDEX = 3;
+	private static final int SECTION_LENGTH = 4;
+	private static final int LINE_NAME_INDEX = 0;
+	private static final String DEFAULT_FILTER_LINE = FilterFactory.DEFAULT_FILTER_NAME;
+	private static final String DEFAULT_ORDER_LINE = OrderFactory.DEFAULT_ORDER_NAME;
 
+
+
+	private static final String FILTER_HEADER = "FILTER";
+	private static final String ORDER_HEADER = "ORDER";
+	private static final int START_INDEX = 0;
 	private static final String WORD_DIVIDER = "#";
 	private FilterFactory filterFact = new FilterFactory();
 	private OrderFactory orderFact = new OrderFactory();
 	private int currentLine = 1;
-	private File[] currentFiles;
+	private File[] filteredFiles;
 	private boolean oppositeRule = false;
 	private BufferedReader buffer;
 	private String filesPath;
@@ -48,13 +59,13 @@ public class FileParsing {
 		// create array to hold all the small sectionsArray, we don't know how much we have
 		ArrayList<String[]> sectionsArray = new ArrayList<>();
 
+
 		while (commandLine != null) {
-			String[] section = new String[4];
+			String[] section = new String[SECTION_LENGTH];
 			// read the first 3 line of the section
 			for (int i = 0; i < 3; i++) {
 				section[i] = commandLine;
-
-				//checking errors type II.
+				//checking for type II errors.
 				try {
 					validateLine(commandLine, i);
 				} catch (TypeTwoException e) {
@@ -65,7 +76,7 @@ public class FileParsing {
 			}
 			// if the 4'th line is not a start of a new section, add it ro the sectionsArray.
 			if (commandLine != null && !commandLine.equals(FILTER_HEADER)) {
-				section[3] = commandLine;
+				section[ORDER_ROW_INDEX] = commandLine;
 				commandLine = buffer.readLine();
 			}
 			// add the section to the sections array
@@ -74,33 +85,31 @@ public class FileParsing {
 		return sectionsArray;
 	}
 
-	private boolean validateLine(String currentLine, int i) throws TypeTwoException {
+	private void validateLine(String currentLine, int row) throws TypeTwoException {
 		if (currentLine != null) {
-			if (i == 0 && !currentLine.equals(FILTER_HEADER)) {
+			if (row == FILTER_HEADER_INDEX && !currentLine.equals(FILTER_HEADER)) {
 				throw new SubsectionException();
-			} else if (i == 2 && !currentLine.equals(ORDER_HEADER)) {
+			} else if (row == ORDER_HEADER_INDEX && !currentLine.equals(ORDER_HEADER)) {
 				throw new SubsectionException();
 			}
-		} else if (i == 2) {
+		} else if (row == ORDER_HEADER_INDEX) {
 			throw new BadFormatException();
 		}
-		return true;
 	}
 
 	public void filterAndOrder(ArrayList<String[]> sections) {
 		for (String[] section : sections) {
-			for (int i = 0; i < 4; i++) {
-				if (i == 1) {
+			for (int i = 0; i < SECTION_LENGTH; i++) {
+				if (i == FILTER_ROW_INDEX) {
 					filterFiles(parseLine(section[i], FilterFactory.NOT_SUFFIX));
 				}
-				if (i == 3) {
+				if (i == ORDER_ROW_INDEX) {
 					orderFiles(parseLine(section[i], OrderFactory.REVERSE_SUFFIX));
 				}
 				if (section[i] != null)
 					currentLine++;
 			}
-
-			for (File file : currentFiles) {
+			for (File file : filteredFiles) {
 				System.out.println(file.getName());
 			}
 		}
@@ -109,47 +118,43 @@ public class FileParsing {
 	public String[] parseLine(String line, String notSuffix) {
 		oppositeRule = false;
 		if (line == null) {
-			line = OrderFactory.DEFAULT_COMPARATOR_NAME;
+			line = OrderFactory.DEFAULT_ORDER_NAME;
 		}
 		if (line.contains(notSuffix)) {
 			int indexToRemove = line.indexOf(notSuffix);
-			line = line.substring(0, indexToRemove);
+			line = line.substring(START_INDEX, indexToRemove);
 			oppositeRule = true;
 		}
 		String[] output = line.split(WORD_DIVIDER);
-
 		return output;
 	}
 
 	public void orderFiles(String[] line) {
-		String orderName = line[0];
-		Comparator<File> comparator;
 		try {
-			comparator = orderFact.getOrderComparator(orderName, oppositeRule);
-			Arrays.sort(currentFiles, comparator);
-
+			Comparator<File> comparator = orderFact.getOrderComparator(line[LINE_NAME_INDEX], oppositeRule);
+			Arrays.sort(filteredFiles, comparator);
 		} catch (OrderException e) {
 			System.err.print(String.format(e.getMessage(), currentLine));
-			orderFiles(parseLine(OrderFactory.DEFAULT_COMPARATOR_NAME, OrderFactory.REVERSE_SUFFIX));
+			orderFiles(parseLine(DEFAULT_ORDER_LINE, OrderFactory.REVERSE_SUFFIX));
 		}
 	}
 
 
-	public void filterFiles(String[] line) {
+	public void filterFiles(String[] command) {
 		try {
-			final Filter filter = filterFact.getFilter(line[0]);
-			if (filter.checkCommand(line)) {
-				readFiles(line, filter);
+			Filter filter = filterFact.getFilter(command[LINE_NAME_INDEX]);
+			if (filter.checkCommand(command)) {
+				readFiles(command, filter);
 			}
 		} catch (FilterException e) {
 			System.err.print(String.format(e.getMessage(), currentLine));
-			// call to default filter action:
-			filterFiles(parseLine(FilterFactory.DEFAULT_FILTER_NAME, FilterFactory.NOT_SUFFIX));
+			// call to filterFiles with default filter:
+			filterFiles(parseLine(DEFAULT_FILTER_LINE, FilterFactory.NOT_SUFFIX));
 		}
 	}
 
 	private void readFiles(String[] command, Filter filter) {
-		currentFiles = new File(this.filesPath).listFiles(pathname -> (!pathname.isDirectory()) &&
+		filteredFiles = new File(this.filesPath).listFiles(pathname -> (!pathname.isDirectory()) &&
 				(filter.passFilter(pathname, command) != oppositeRule));
 	}
 

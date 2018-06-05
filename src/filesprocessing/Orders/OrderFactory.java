@@ -16,7 +16,7 @@ public class OrderFactory {
 
 
 	private final static int DEFAULT_COMPARATOR = ABS;
-	public final static String DEFAULT_COMPARATOR_NAME = ABS_NAME;
+	public final static String DEFAULT_ORDER_NAME = ABS_NAME;
 
 
 	private static Order[] orders = new Order[3];
