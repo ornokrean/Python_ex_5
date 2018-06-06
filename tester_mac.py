@@ -171,7 +171,7 @@ def compare_files(file1, file2):
     :param file2:
     :return: the compaction text if there was errors
     """
-    command_to_compare = ['fc', '/W', '/N', '/A', file1, file2]
+    command_to_compare = ['diff', '-w', file1, file2]
     code, output, errors = run_with_cmd(command_to_compare)
     if code != 0:  # if code != 0
         return output

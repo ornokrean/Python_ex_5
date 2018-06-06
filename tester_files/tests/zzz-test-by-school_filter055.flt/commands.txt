@@ -1,4 +1,0 @@
-FILTER
-prefix#filesPath#NOT
-ORDER
-abs#REVERSE
