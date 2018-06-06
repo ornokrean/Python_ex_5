@@ -26,7 +26,6 @@ public class FileParsing {
 	private static final String DEFAULT_ORDER_LINE = OrderFactory.DEFAULT_ORDER_NAME;
 
 
-
 	private static final String FILTER_HEADER = "FILTER";
 	private static final String ORDER_HEADER = "ORDER";
 	private static final int START_INDEX = 0;
@@ -50,7 +49,7 @@ public class FileParsing {
 
 	}
 
-	public ArrayList<String[]> parseFile() throws TypeTwoException,IOException {
+	public ArrayList<String[]> parseFile() throws TypeTwoException, IOException {
 
 		// create array to hold all the small sectionsArray, we don't know how much we have, each oe is
 		// section
@@ -59,17 +58,13 @@ public class FileParsing {
 		// open the command file
 		// read the first line here, we don't want the while to read it every loop, maybe can be FIXED
 		String commandLine = buffer.readLine();
-
-
-
 		while (commandLine != null) {
 			String[] section = new String[SECTION_LENGTH];
 			// read the first 3 line of the section
 			for (int i = 0; i < 3; i++) {
 				section[i] = commandLine;
 				//checking for type II errors.
-					validateLine(commandLine, i);
-
+				validateLine(commandLine, i);
 				commandLine = buffer.readLine();
 			}
 			// if the 4'th line is not a start of a new section, add it ro the sectionsArray.
@@ -97,6 +92,7 @@ public class FileParsing {
 
 	public void filterAndOrder(ArrayList<String[]> sections) {
 		for (String[] section : sections) {
+
 			for (int i = 0; i < SECTION_LENGTH; i++) {
 				if (i == FILTER_ROW_INDEX) {
 					filterFiles(parseLine(section[i], FilterFactory.NOT_SUFFIX));
@@ -144,6 +140,7 @@ public class FileParsing {
 			if (filter.checkCommand(command)) {
 				readFiles(command, filter);
 			}
+
 		} catch (FilterException e) {
 			System.err.print(String.format(e.getMessage(), currentLine));
 			// call to filterFiles with default filter:
@@ -154,6 +151,8 @@ public class FileParsing {
 	private void readFiles(String[] command, Filter filter) {
 		filteredFiles = new File(this.filesPath).listFiles(pathname -> (!pathname.isDirectory()) &&
 				(filter.passFilter(pathname, command) != oppositeRule));
+
+
 	}
 
 

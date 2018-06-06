@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.Comparator;
 
 /**
- * This class implement Comperator, and allowed to compare files by a variety of criteria, each class
+ * This class implement Comparator, and allowed to compare files by a variety of criteria, each class
  * that extend Order have to implement the method compare , that determines the hierarchy between two
  * Files.
  */
