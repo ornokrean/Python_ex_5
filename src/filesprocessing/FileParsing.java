@@ -3,8 +3,8 @@ package filesprocessing;
 import filesprocessing.Exceptions.*;
 import filesprocessing.Orders.OrderFactory;
 import filesprocessing.filters.Filter;
-import filesprocessing.Exceptions.FilterException;
 import filesprocessing.filters.FilterFactory;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -46,9 +46,10 @@ public class FileParsing {
 
 	/**
 	 * Constructor
+	 *
 	 * @param filesPath- the location of the files
-	 * @param command- the wanted command
-	 * @throws TypeTwoException-  alerts of fatal errors in the program given values.
+	 * @param command-   the wanted command
+	 * @throws TypeTwoException- alerts of fatal errors in the program given values.
 	 */
 	FileParsing(String filesPath, String command) throws TypeTwoException {
 		this.filesPath = filesPath;
@@ -64,7 +65,7 @@ public class FileParsing {
 	 *
 	 * @return - array of each section
 	 * @throws TypeTwoException - alerts of fatal errors in the program given values.
-	 * @throws IOException - In out exception
+	 * @throws IOException      - In out exception
 	 */
 	public ArrayList<String[]> parseFile() throws TypeTwoException, IOException {
 		// create array to hold all the small sectionsArray, we don't know how much we have, each oe is
