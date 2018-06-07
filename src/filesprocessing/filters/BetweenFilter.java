@@ -1,5 +1,7 @@
 package filesprocessing.filters;
 
+import filesprocessing.Exceptions.FilterException;
+
 import java.io.File;
 
 /**

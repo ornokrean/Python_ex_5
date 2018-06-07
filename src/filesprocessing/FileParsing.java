@@ -1,9 +1,9 @@
 package filesprocessing;
 
-import filesprocessing.Orders.OrderException;
+import filesprocessing.Exceptions.*;
 import filesprocessing.Orders.OrderFactory;
 import filesprocessing.filters.Filter;
-import filesprocessing.filters.FilterException;
+import filesprocessing.Exceptions.FilterException;
 import filesprocessing.filters.FilterFactory;
 
 import java.io.BufferedReader;
@@ -92,7 +92,7 @@ public class FileParsing {
 		}
 	}
 
-	public void filterAndOrder(ArrayList<String[]> sections) {
+	public void filterAndOrder(ArrayList<String[]> sections) throws SourceException {
 		for (String[] section : sections) {
 
 			for (int i = 0; i < SECTION_LENGTH; i++) {
@@ -100,17 +100,21 @@ public class FileParsing {
 					filterFiles(parseLine(section[i], FilterFactory.NOT_SUFFIX));
 				}
 				if (i == ORDER_ROW_INDEX) {
+					if (filteredFiles != null) {
 
-					orderFiles(parseLine(section[i], OrderFactory.REVERSE_SUFFIX));
+						orderFiles(parseLine(section[i], OrderFactory.REVERSE_SUFFIX));
+					} else {
+						throw new SourceException();
+
+					}
 				}
 				if (section[i] != null)
 					currentLine++;
 			}
-			if (filteredFiles != null) {
-				for (File file : filteredFiles) {
-					System.out.println(file.getName());
-				}
+			for (File file : filteredFiles) {
+				System.out.println(file.getName());
 			}
+
 		}
 	}
 

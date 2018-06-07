@@ -1,4 +1,6 @@
 package filesprocessing;
+import filesprocessing.Exceptions.TypeTwoException;
+
 import java.io.IOException;
 import java.util.ArrayList;
 

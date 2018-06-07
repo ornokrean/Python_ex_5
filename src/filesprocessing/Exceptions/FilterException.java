@@ -1,22 +1,20 @@
-package filesprocessing.filters;
+package filesprocessing.Exceptions;
 
 
 
 /**
  *
  */
-public class FilterException extends Exception {
+public class FilterException extends TypeOneException {
 	/* */
 	private static final long serialVersionUID = 1L;
-	private static final String WARNING_LINE_MSG = "Warning in line %d\n";
 
 	/**
 	 * constructor-  get the line number that have a problem and print Exception
 	 */
 	public FilterException() {
-		super(WARNING_LINE_MSG);
+		super(WARNING);
 	}
-
 	/**
 	 *
 	 * @param s

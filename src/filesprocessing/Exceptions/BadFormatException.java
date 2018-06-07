@@ -1,4 +1,4 @@
-package filesprocessing;
+package filesprocessing.Exceptions;
 
 public class BadFormatException extends TypeTwoException {
 

@@ -1,5 +1,7 @@
 package filesprocessing.filters;
 
+import filesprocessing.Exceptions.FilterException;
+
 /**
  * class that create an array with all the type of filters
  */
