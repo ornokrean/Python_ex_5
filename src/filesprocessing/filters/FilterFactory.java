@@ -1,9 +1,15 @@
 package filesprocessing.filters;
 
+/**
+ * class that create an array with all the type of filters
+ */
 public class FilterFactory {
+	/* ******************************** constants **************************************** */
+
+	/* Constant for case of the opposite of the filter */
 	public final static String NOT_SUFFIX = "#NOT";
 
-
+	/* constant that represent the filters name */
 	private final static String SMALLER_FILTER_NAME = "smaller_than";
 	private final static String GREATER_FILTER_NAME = "greater_than";
 	private final static String BETWEEN_FILTER_NAME = "between";
@@ -15,7 +21,9 @@ public class FilterFactory {
 	private final static String EXECUTABLE_FILTER_NAME = "executable";
 	private final static String HIDDEN_FILTER_NAME = "hidden";
 	private final static String ALL_FILTER_NAME = "all";
+	public final static String DEFAULT_FILTER_NAME = ALL_FILTER_NAME;
 
+	/* the place of each filter in the filters array*/
 	private final static int SMALLER = 0;
 	private final static int GREATER = 1;
 	private final static int BETWEEN = 2;
@@ -29,13 +37,14 @@ public class FilterFactory {
 	private final static int ALL = 10;
 
 
+	static final int NUM_OF_FILTERS = 11;
 
-	private final static int DEFAULT_FILTER = ALL;
-	public final static String DEFAULT_FILTER_NAME = ALL_FILTER_NAME;
+	/* fields - array that contain all the filters of the class */
+	private static Filter[] filters = new Filter[NUM_OF_FILTERS];
 
-
-	private static Filter[] filters = new Filter[11];
-
+	/**
+	 * constructor that initial all the filers in the array
+	 */
 	public FilterFactory() {
 		filters[SMALLER] = new SmallerThanFilter();
 		filters[GREATER] = new GreaterThanFilter();
@@ -50,6 +59,12 @@ public class FilterFactory {
 		filters[ALL] = new AllFilter();
 	}
 
+	/**
+	 * return the filter according to the given name
+	 * @param filterName - the name of the filter
+	 * @return the filter according to the given name
+	 * @throws FilterException - if the filer name doesnt match to neither oof the filters
+	 */
 	public Filter getFilter(String filterName) throws FilterException {
 		switch (filterName) {
 			case ALL_FILTER_NAME:
@@ -79,7 +94,5 @@ public class FilterFactory {
 		}
 	}
 
-	public Filter getDefaultFilter() {
-		return filters[FilterFactory.DEFAULT_FILTER];
-	}
+
 }

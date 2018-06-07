@@ -2,26 +2,39 @@ package filesprocessing.filters;
 
 import java.io.File;
 
-public class SmallerThanFilter extends Filter{
-	private static final double SIZE_FACTOR = 1024.0;
-	private double bound;
-	public boolean passFilter(File file, String[] args) {
+/**
+ * Check if file size is strictly less than the given number of k-bytes
+ */
+public class SmallerThanFilter extends Filter {
+    private double bound;
 
+    /**
+     * check if the file was filtered
+     *
+     * @param file - the File
+     * @param args - the values of the filter
+     * @return - true if the file filtered , else false
+     */
+    public boolean passFilter(File file, String[] args) {
+        double size = file.length() / SIZE_FACTOR;
+        return (size < bound);
+    }
 
-		double size = file.length()/SIZE_FACTOR;
-		return (size < bound);
-	}
-	@Override
-	public boolean checkCommand(String[] command) throws FilterException{
-		try {
-			bound = Double.parseDouble(command[1].replace(" ", ""));
-		}catch (NumberFormatException e){
-			throw new FilterException();
-		}
-		if (command.length != 2 || bound < 0) {
-			throw new FilterException();
-		}
-		
-		return true;
-	}
+    /**
+     * @param command - the command that appear in the line
+     * @return -true if the command was legals , else false
+     * @throws FilterException - if the command was not legals
+     */
+    @Override
+    public boolean checkCommand(String[] command) throws FilterException {
+        try {
+            bound = getBound(command[FIRST_ARG_PLACE]);
+        } catch (NumberFormatException e) {
+            throw new FilterException();
+        }
+        if (command.length != REGULAR_NUM_OF_ARGS || bound < 0) {
+            throw new FilterException();
+        }
+        return true;
+    }
 }

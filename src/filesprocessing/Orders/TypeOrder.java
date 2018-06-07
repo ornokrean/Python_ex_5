@@ -8,10 +8,8 @@ import java.io.File;
  */
 class TypeOrder extends Order {
 
-
     private static final char DOT = '.';
     private static final String NO_TYPE = "";
-
 
     /*
      * Method that get a file and return the type of the file
