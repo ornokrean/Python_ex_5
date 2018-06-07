@@ -1,4 +1,4 @@
-package filesprocessing.Exceptions;
+package filesprocessing.FileProcessingExceptions;
 
 /**
  * This Class extends Exception. this exception is oneTypeException called when the problem is in

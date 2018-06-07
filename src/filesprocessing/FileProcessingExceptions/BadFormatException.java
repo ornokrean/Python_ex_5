@@ -1,4 +1,4 @@
-package filesprocessing.Exceptions;
+package filesprocessing.FileProcessingExceptions;
 
 
 /**

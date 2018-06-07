@@ -1,6 +1,6 @@
 package filesprocessing;
 
-import filesprocessing.Exceptions.*;
+import filesprocessing.FileProcessingExceptions.*;
 import filesprocessing.Orders.OrderFactory;
 import filesprocessing.filters.Filter;
 import filesprocessing.filters.FilterFactory;

@@ -1,6 +1,6 @@
 package filesprocessing.filters;
 
-import filesprocessing.Exceptions.FilterException;
+import filesprocessing.FileProcessingExceptions.FilterException;
 
 import java.io.File;
 

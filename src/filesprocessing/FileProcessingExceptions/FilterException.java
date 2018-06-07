@@ -1,26 +1,27 @@
-package filesprocessing.Exceptions;
+package filesprocessing.FileProcessingExceptions;
+
 
 /**
  * This Class extends TypeOneException. this exception is kind of oneTypeException called when the problem
- * is in the Order line
+ * is in the Filter line
  */
-public class OrderException extends TypeOneException {
+public class FilterException extends TypeOneException {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * constructor
-     */
-	public OrderException() {
+	/**
+	 * constructor
+	 */
+	public FilterException() {
 		super(WARNING);
 	}
 
 	/**
 	 * Constructor
+	 *
 	 * @param s - message to pass
 	 */
-	public OrderException(String s) {
+	public FilterException(String s) {
 		super(s);
 	}
-
 
 }

@@ -1,7 +1,7 @@
 package filesprocessing;
 
-import filesprocessing.Exceptions.TypeTwoException;
-import filesprocessing.Exceptions.WrongArgumentsException;
+import filesprocessing.FileProcessingExceptions.TypeTwoException;
+import filesprocessing.FileProcessingExceptions.WrongArgumentsException;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package filesprocessing.Exceptions;
+package filesprocessing.FileProcessingExceptions;
 
 /**
  * This Class extends TypeTwoException. this exception is kind of TypeTwoException called when the problem
