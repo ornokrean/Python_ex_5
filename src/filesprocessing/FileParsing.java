@@ -31,7 +31,7 @@ public class FileParsing {
 	private static final int START_INDEX = 0;
 	private static final String WORD_DIVIDER = "#";
 	private FilterFactory filterFact = FilterFactory.instance();
-	private OrderFactory orderFact = OrderFactory.instance();
+	private OrderFactory orderFact = new OrderFactory();
 	private int currentLine = 1;
 	private File[] filteredFiles;
 	private boolean oppositeRule = false;
