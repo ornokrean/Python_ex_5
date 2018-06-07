@@ -7,11 +7,16 @@ package filesprocessing.Exceptions;
 public class OrderException extends TypeOneException {
 
     /**
-     * constructor- get the line number that have a problem and print Exception
+     * constructor
      */
 	public OrderException() {
 		super(WARNING);
 	}
+
+	/**
+	 * Constructor
+	 * @param s-message to pass
+	 */
 	public OrderException(String s) {
 		super(s);
 	}
