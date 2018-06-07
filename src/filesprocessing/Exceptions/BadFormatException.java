@@ -8,17 +8,25 @@ package filesprocessing.Exceptions;
 public class BadFormatException extends TypeTwoException {
 
 
-		private static final long serialVersionUID = 1L;
-		private static final String MESSAGE = "ERROR: Bad format of Commands File\n";
+	private static final long serialVersionUID = 1L;
+	/* message of the exception*/
+	private static final String MESSAGE = "ERROR: Bad format of Commands File\n";
+
 	/**
 	 * constructor
 	 */
-		public BadFormatException() {
-			super(MESSAGE);
-		}
-		public BadFormatException(String s){
-			super(s);
-		}
-
+	public BadFormatException() {
+		super(MESSAGE);
 	}
+
+	/**
+	 * Constructor
+	 *
+	 * @param s - message to print
+	 */
+	public BadFormatException(String s) {
+		super(s);
+	}
+
+}
 

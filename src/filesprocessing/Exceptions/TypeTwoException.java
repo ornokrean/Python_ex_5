@@ -10,9 +10,10 @@ public class TypeTwoException extends Exception {
 
 	/**
 	 * Constructor
-	 * @param s-message to pass
+	 *
+	 * @param s - message to print
 	 */
-	public TypeTwoException(String s){
+	public TypeTwoException(String s) {
 		super(s);
 	}
 

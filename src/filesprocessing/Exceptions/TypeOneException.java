@@ -5,18 +5,19 @@ package filesprocessing.Exceptions;
  * the line but we can make the default order or filter
  */
 public class TypeOneException extends Exception {
-
-	/* the message we print */
-	static final String WARNING ="Warning in line %d\n";
-
 	private static final long serialVersionUID = 1L;
+
+	/* the message of exception */
+	static final String WARNING ="Warning in line %d\n";
 
 	/**
 	 * Constructor
-	 * @param s-message to pass
+	 *
+	 * @param s - message to print
 	 */
 	public TypeOneException(String s){
 		super(s);
 	}
+
 
 }

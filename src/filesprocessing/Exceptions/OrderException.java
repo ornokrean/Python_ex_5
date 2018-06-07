@@ -1,10 +1,11 @@
 package filesprocessing.Exceptions;
 
 /**
- * This Class extends Exception. this exception is kind of oneTypeException called when the problem is in
- * the Order line
+ * This Class extends TypeOneException. this exception is kind of oneTypeException called when the problem
+ * is in the Order line
  */
 public class OrderException extends TypeOneException {
+	private static final long serialVersionUID = 1L;
 
     /**
      * constructor
@@ -15,7 +16,7 @@ public class OrderException extends TypeOneException {
 
 	/**
 	 * Constructor
-	 * @param s-message to pass
+	 * @param s - message to pass
 	 */
 	public OrderException(String s) {
 		super(s);

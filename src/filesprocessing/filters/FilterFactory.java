@@ -12,7 +12,7 @@ public class FilterFactory {
 
 	/* Constant for case of the opposite of the filter */
 	public final static String NOT_SUFFIX = "#NOT";
-
+	static final int NUM_OF_FILTERS = 11;
 	/* constant that represent the filters name */
 	private final static String SMALLER_FILTER_NAME = "smaller_than";
 	private final static String GREATER_FILTER_NAME = "greater_than";
@@ -26,7 +26,6 @@ public class FilterFactory {
 	private final static String HIDDEN_FILTER_NAME = "hidden";
 	private final static String ALL_FILTER_NAME = "all";
 	public final static String DEFAULT_FILTER_NAME = ALL_FILTER_NAME;
-
 	/* the place of each filter in the filters array*/
 	private final static int SMALLER = 0;
 	private final static int GREATER = 1;
@@ -39,17 +38,10 @@ public class FilterFactory {
 	private final static int EXECUTABLE = 8;
 	private final static int HIDDEN = 9;
 	private final static int ALL = 10;
-
-
-	static final int NUM_OF_FILTERS = 11;
-
 	/* fields - array that contain all the filters of the class */
 	private static Filter[] filters = new Filter[NUM_OF_FILTERS];
 	private static FilterFactory factory = new FilterFactory();
 
-	public static FilterFactory instance(){
-		return factory;
-	}
 	/**
 	 * constructor that initial all the filers in the array
 	 */
@@ -67,8 +59,13 @@ public class FilterFactory {
 		filters[ALL] = new AllFilter();
 	}
 
+	public static FilterFactory instance() {
+		return factory;
+	}
+
 	/**
 	 * return the filter according to the given name
+	 *
 	 * @param filterName - the name of the filter
 	 * @return the filter according to the given name
 	 * @throws FilterException - if the filer name doesnt match to neither oof the filters
