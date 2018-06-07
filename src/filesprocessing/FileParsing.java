@@ -62,10 +62,12 @@ public class FileParsing {
 			String[] section = new String[SECTION_LENGTH];
 			// read the first 3 line of the section
 			for (int i = 0; i < 3; i++) {
-				section[i] = commandLine;
 				//checking for type II errors.
 				validateLine(commandLine, i);
+
+				section[i] = commandLine;
 				commandLine = buffer.readLine();
+
 			}
 			// if the 4'th line is not a start of a new section, add it ro the sectionsArray.
 			if (commandLine != null && !commandLine.equals(FILTER_HEADER)) {
@@ -103,8 +105,10 @@ public class FileParsing {
 				if (section[i] != null)
 					currentLine++;
 			}
-			for (File file : filteredFiles) {
-				System.out.println(file.getName());
+			if (filteredFiles != null) {
+				for (File file : filteredFiles) {
+					System.out.println(file.getName());
+				}
 			}
 		}
 	}
@@ -131,6 +135,9 @@ public class FileParsing {
 			System.err.print(String.format(e.getMessage(), currentLine));
 			orderFiles(parseLine(DEFAULT_ORDER_LINE, OrderFactory.REVERSE_SUFFIX));
 		}
+//		}catch (NullPointerException e){
+//			System.err.println("here");
+//		}
 	}
 
 

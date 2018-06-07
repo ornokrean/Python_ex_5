@@ -1,4 +1,3 @@
 FILTER
-hidden#yes#NOT
+greater_than#340#3440
 ORDER
-Filter
