@@ -55,14 +55,27 @@ WritableFilter.java - Filter that checks if file have writing permission (for th
 
 * orders package, that holds all the order classes:
 AbsOrder.java - Class extends Order, determines the hierarchy between two files by the default.
-Order.java -
-OrderFactory.java -
-SizeOrder.java -
-TypeOrder.java -
+Order.java - Class extends Order, determines the hierarchy between two files by the default.
+OrderFactory.java - constructor, create array with all type of order comparator, using factory structure and
+                    singleton- like data members - only one per each filter will be made and held.
+SizeOrder.java - Class extends Order, determines the hierarchy between two files by the size of the file.  if
+                    two files have the same size, the hierarchy will be determined by the default comparator.
+TypeOrder.java - Class extends Order, determines the hierarchy between two files by the type of the file. if
+                    two files have the same type, the hierarchy will be determined by the default comparator.
 
 * in addition, we have the program managers inside the filesprocessing package:
-DirectoryProcessor.java -
-FileParsing.java -
+DirectoryProcessor.java -  The Main class , get the argument from the user, checks if there is exactly two
+                            arguments , and if so will run the project. otherwise it will print the error and
+                             stop.
+FileParsing.java -the file parsing class. the constructor will get two arguments: the filesDirectoryPath
+                   which is the directory of the files to filter and order, and the commandFilePath which is
+                   the actual filter and order values to act on. it will read the commands file, and will
+                   print for each section inside the matching files. in event of wrong filter or order, the
+                   program will use the default as constructed in the order and filter factories, and print
+                   a warning in the matching line. in event of fatal error as wrong file address or
+                   format (etc.) the program will throw a TypeTwoException. in order to run this
+                   class is it needed to create an instance with the proper values and to run the parsefile
+                   function.
 =============================
 =          Design           =
 =============================

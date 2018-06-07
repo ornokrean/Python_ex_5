@@ -4,7 +4,7 @@ import java.io.File;
 
 /**
  * Class extends Order, determines the hierarchy between two files by the size of the file. if two files
- * have the same size, the hierarchy will be determined by the default.
+ * have the same size, the hierarchy will be determined by the default comparator.
  */
 class SizeOrder extends Order {
 

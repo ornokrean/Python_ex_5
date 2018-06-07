@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * The ain class , get the argument from the user ,check if there is exactly two arguments , and if so'
- * run the project.
+ * The Main class , get the argument from the user, checks if there is exactly two arguments , and if so will
+ * run the project. otherwise it will print the error and stop
  */
 public class DirectoryProcessor {
 
@@ -33,10 +33,7 @@ public class DirectoryProcessor {
 			}
 			// get the command file and process it into sections.
 			FileParsing fileParse = new FileParsing(args[FILE_PATH], args[COMMAND]);
-			ArrayList<String[]> sections = fileParse.parseFile();
-			if (sections != null) {
-				fileParse.filterAndOrder(sections);
-			}
+			fileParse.parseFile();
 		} catch (TypeTwoException e) {
 			System.err.println(e.getMessage());
 		}

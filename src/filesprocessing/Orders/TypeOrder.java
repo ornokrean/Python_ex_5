@@ -4,7 +4,7 @@ import java.io.File;
 
 /**
  * Class extends Order, determines the hierarchy between two files by the type of the file. if two files
- * have the same type, the hierarchy will be determined by the default.
+ * have the same type, the hierarchy will be determined by the default comparator.
  */
 class TypeOrder extends Order {
 

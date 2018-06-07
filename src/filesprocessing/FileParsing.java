@@ -13,7 +13,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
-
+/**
+ * the file parsing class. the constructor will get two arguments: the filesDirectoryPath which is the
+ * directory of the files to filter and order, and the commandFilePath which is the actual filter and order
+ * values to act on. it will read the commands file, and will print for each section inside the matching
+ * files. in event of wrong filter or order, the program will use the default as constructed in the order
+ * and filter factories, and print a warning in the matching line. in event of fatal error as wrong file
+ * address or format (etc.) the program will throw a TypeTwoException.
+ * in order to run this class is it needed to create an instance with the proper values and to run the
+ * parsefile function.
+ */
 public class FileParsing {
 
 	/* ********************************* constants ************************************** */
@@ -48,21 +57,21 @@ public class FileParsing {
 	/* the buffer reader */
 	private BufferedReader buffer;
 	/* the path to the files to read */
-	private String filesPath;
+	private String filesDirectoryPath;
 
 	/* *********************************** class Method ********************************** */
 
 	/**
 	 * Constructor
 	 *
-	 * @param filesPath- the location of the files
-	 * @param command-   the wanted command
+	 * @param filesDirectoryPath- the location of the files
+	 * @param commandFilePath - the wanted command
 	 * @throws TypeTwoException- alerts of fatal errors in the program given values.
 	 */
-	FileParsing(String filesPath, String command) throws TypeTwoException {
-		this.filesPath = filesPath;
+	FileParsing(String filesDirectoryPath, String commandFilePath) throws TypeTwoException {
+		this.filesDirectoryPath = filesDirectoryPath;
 		try {
-			buffer = new BufferedReader(new FileReader(command));
+			buffer = new BufferedReader(new FileReader(commandFilePath));
 		} catch (IOException e) {
 			throw new SubsectionException();
 		}
@@ -75,7 +84,7 @@ public class FileParsing {
 	 * @throws TypeTwoException - alerts of fatal errors in the program given values.
 	 * @throws IOException      - In out exception
 	 */
-	public ArrayList<String[]> parseFile() throws TypeTwoException, IOException {
+	public void parseFile() throws TypeTwoException, IOException {
 		// create array to hold all the small sectionsArray, we don't know how much we have, each oe is
 		// section
 		ArrayList<String[]> sectionsArray = new ArrayList<>();
@@ -99,7 +108,9 @@ public class FileParsing {
 			// add the section to the sections array
 			sectionsArray.add(section);
 		}
-		return sectionsArray;
+		if (sectionsArray != null) {
+			filterAndOrder(sectionsArray);
+		}
 	}
 
 	/*
@@ -198,7 +209,7 @@ public class FileParsing {
 
 	/* this function reads all the files from the given path and filters them with the filter given */
 	private void readAndFilterFiles(String[] command, Filter filter) {
-		filteredFiles = new File(this.filesPath).listFiles(pathname -> (pathname.isFile()) &&
+		filteredFiles = new File(this.filesDirectoryPath).listFiles(pathname -> (pathname.isFile()) &&
 				(filter.passFilter(pathname, command) != oppositeRule));
 	}
 }

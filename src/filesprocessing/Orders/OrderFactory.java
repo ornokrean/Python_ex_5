@@ -4,7 +4,6 @@ import filesprocessing.FileProcessingExceptions.OrderException;
 
 import java.io.File;
 import java.util.Comparator;
-
 /**
  * This class create array with all the type of comparator represent the orders.
  */
@@ -26,7 +25,7 @@ public class OrderFactory {
 	private static OrderFactory factory = new OrderFactory();
 
 	/**
-	 * constructor, create array with all type of order comperator
+	 * constructor, create array with all type of order comparator.
 	 */
 	private OrderFactory() {
 		orders[ABS] = new AbsOrder();
