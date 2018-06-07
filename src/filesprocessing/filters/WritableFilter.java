@@ -5,7 +5,7 @@ import filesprocessing.FileProcessingExceptions.FilterException;
 import java.io.File;
 
 /**
- * Check if file have writing permission (for the current user)
+ * Filter that checks if file have writing permission (for the current user). Extends Filter class.
  */
 public class WritableFilter extends Filter {
 

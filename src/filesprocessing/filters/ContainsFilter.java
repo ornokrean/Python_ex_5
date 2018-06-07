@@ -5,7 +5,7 @@ import filesprocessing.FileProcessingExceptions.FilterException;
 import java.io.File;
 
 /**
- * Check if the given value is contained in the file name (excluding path)
+ * Filter that checks if the given value is contained in the file name (excluding path). Extends Filter class.
  */
 public class ContainsFilter extends Filter {
 

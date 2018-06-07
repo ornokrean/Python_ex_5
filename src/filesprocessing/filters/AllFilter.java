@@ -5,7 +5,7 @@ import filesprocessing.FileProcessingExceptions.FilterException;
 import java.io.File;
 
 /**
- * Filter that pass all the files
+ * Filter that pass all the files. Extends Filter class.
  */
 public class AllFilter extends Filter {
 

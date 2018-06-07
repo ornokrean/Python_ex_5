@@ -3,7 +3,8 @@ package filesprocessing.filters;
 import filesprocessing.FileProcessingExceptions.FilterException;
 
 /**
- * class that create an array with all the type of filters
+ * class that create an array with all the type of filters, using factory structure and singleton- like
+ * data members - only one per each filter will be made and held.
  */
 public class FilterFactory {
 

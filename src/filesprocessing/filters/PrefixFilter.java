@@ -5,7 +5,7 @@ import filesprocessing.FileProcessingExceptions.FilterException;
 import java.io.File;
 
 /**
- * check if the prefix of the file name is as the given value
+ * Filter that checks if the prefix of the file name is as the given value. Extends Filter class.
  */
 public class PrefixFilter extends Filter {
 	/**

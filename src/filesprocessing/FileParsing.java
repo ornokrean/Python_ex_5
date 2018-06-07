@@ -198,7 +198,7 @@ public class FileParsing {
 
 	/* this function reads all the files from the given path and filters them with the filter given */
 	private void readAndFilterFiles(String[] command, Filter filter) {
-		filteredFiles = new File(this.filesPath).listFiles(pathname -> (!pathname.isDirectory()) &&
+		filteredFiles = new File(this.filesPath).listFiles(pathname -> (pathname.isFile()) &&
 				(filter.passFilter(pathname, command) != oppositeRule));
 	}
 }

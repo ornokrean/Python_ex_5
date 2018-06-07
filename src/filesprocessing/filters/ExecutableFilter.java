@@ -5,7 +5,7 @@ import filesprocessing.FileProcessingExceptions.FilterException;
 import java.io.File;
 
 /**
- * check if file have execution permission
+ * Filter that checks if file have execution permission. Extends Filter class.
  */
 public class ExecutableFilter extends Filter {
 	/**

@@ -8,6 +8,7 @@ import java.io.File;
  * Filters will return all files in Source Directory that match a certain criterion. Only files are
  * returned (not directories). Only files that are directly under the source directory are returned
  * (files that are in directories that are under the source directory should not be returned).
+ * this is an abstract class which all the other filters extends.
  */
 public abstract class Filter {
     /* constant that represent a different sizes of args arrays */
@@ -27,7 +28,7 @@ public abstract class Filter {
     static final String YES = "YES";
 
     static final String SPACE = " ";
-
+    static final String SPACE_REPLACEMENT = "";
 
     /**
      * constructor
@@ -53,7 +54,7 @@ public abstract class Filter {
 
     /* Method that get string represent number, and return the number */
     double getBound(String str) {
-        return Double.parseDouble(str.replace(SPACE, ""));
+        return Double.parseDouble(str.replace(SPACE, SPACE_REPLACEMENT));
     }
 
     /*Method that checks if the argument is valid */

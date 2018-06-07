@@ -5,7 +5,8 @@ import filesprocessing.FileProcessingExceptions.FilterException;
 import java.io.File;
 
 /**
- * Check if file size is strictly greater than the given number of given k-bytes
+ * Filter that checks if file size is strictly greater than the given number of given k-bytes.  Extends
+ * Filter class.
  */
 public class GreaterThanFilter extends Filter {
 	/* the upper bound of the filter*/

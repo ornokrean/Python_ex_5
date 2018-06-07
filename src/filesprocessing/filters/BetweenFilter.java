@@ -5,7 +5,8 @@ import filesprocessing.FileProcessingExceptions.FilterException;
 import java.io.File;
 
 /**
- * check if file size is between (inclusive) the given numbers (in k-bytes)
+ * Filter that checks if file size is between (inclusive) the given numbers (in k-bytes). Extends Filter
+ * class.
  */
 public class BetweenFilter extends Filter {
 

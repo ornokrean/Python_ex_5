@@ -5,7 +5,7 @@ import filesprocessing.FileProcessingExceptions.FilterException;
 import java.io.File;
 
 /**
- * Check if the file a hidden file
+ * Filter that checks if the file a hidden file. Extends Filter class.
  */
 public class HiddenFilter extends Filter{
 	/**

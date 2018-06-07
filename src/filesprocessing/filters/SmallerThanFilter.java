@@ -5,7 +5,7 @@ import filesprocessing.FileProcessingExceptions.FilterException;
 import java.io.File;
 
 /**
- * Check if file size is strictly less than the given number of k-bytes
+ * Filter that checks if file size is strictly less than the given number of k-bytes. Extends Filter class.
  */
 public class SmallerThanFilter extends Filter {
 	private double bound;
