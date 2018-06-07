@@ -5,7 +5,6 @@ import filesprocessing.Orders.OrderFactory;
 import filesprocessing.filters.Filter;
 import filesprocessing.Exceptions.FilterException;
 import filesprocessing.filters.FilterFactory;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -16,6 +15,9 @@ import java.util.Comparator;
 
 
 public class FileParsing {
+
+	/* ********************************* constants ************************************** */
+
 	private static final int FILTER_HEADER_INDEX = 0;
 	private static final int FILTER_ROW_INDEX = 1;
 	private static final int ORDER_HEADER_INDEX = 2;
@@ -30,6 +32,8 @@ public class FileParsing {
 	private static final String ORDER_HEADER = "ORDER";
 	private static final int START_INDEX = 0;
 	private static final String WORD_DIVIDER = "#";
+
+	/* ************************************* fields *********************************** */
 	private FilterFactory filterFact = FilterFactory.instance();
 	private OrderFactory orderFact = OrderFactory.instance();
 	private int currentLine = 1;
@@ -38,23 +42,34 @@ public class FileParsing {
 	private BufferedReader buffer;
 	private String filesPath;
 
-	public FileParsing(String filesPath, String command) throws TypeTwoException {
-		this.filesPath = filesPath;
+	/* *********************************** class Method ********************************** */
 
+	/**
+	 * Constructor
+	 * @param filesPath- the location of the files
+	 * @param command- the wanted command
+	 * @throws TypeTwoException-  alerts of fatal errors in the program given values.
+	 */
+	FileParsing(String filesPath, String command) throws TypeTwoException {
+		this.filesPath = filesPath;
 		try {
 			buffer = new BufferedReader(new FileReader(command));
 		} catch (IOException e) {
 			throw new SubsectionException();
 		}
-
 	}
 
+	/**
+	 * this method create arrays of sections to process
+	 *
+	 * @return - array of each section
+	 * @throws TypeTwoException - alerts of fatal errors in the program given values.
+	 * @throws IOException - In out exception
+	 */
 	public ArrayList<String[]> parseFile() throws TypeTwoException, IOException {
-
 		// create array to hold all the small sectionsArray, we don't know how much we have, each oe is
 		// section
 		ArrayList<String[]> sectionsArray = new ArrayList<>();
-
 		// open the command file
 		// read the first line here, we don't want the while to read it every loop, maybe can be FIXED
 		String commandLine = buffer.readLine();
@@ -64,10 +79,8 @@ public class FileParsing {
 			for (int i = 0; i < 3; i++) {
 				//checking for type II errors.
 				validateLine(commandLine, i);
-
 				section[i] = commandLine;
 				commandLine = buffer.readLine();
-
 			}
 			// if the 4'th line is not a start of a new section, add it ro the sectionsArray.
 			if (commandLine != null && !commandLine.equals(FILTER_HEADER)) {
@@ -153,6 +166,7 @@ public class FileParsing {
 		}
 	}
 
+	/* */
 	private void readFiles(String[] command, Filter filter) {
 		filteredFiles = new File(this.filesPath).listFiles(pathname -> (!pathname.isDirectory()) &&
 				(filter.passFilter(pathname, command) != oppositeRule));
