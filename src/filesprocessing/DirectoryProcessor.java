@@ -24,7 +24,7 @@ public class DirectoryProcessor {
 	 * Main method that run the project
 	 *
 	 * @param args-arguments from user
-	 * @throws IOException- if there is a problem with the arguments
+	 * @throws IOException - if there is a problem with the arguments
 	 */
 	public static void main(String[] args) throws IOException {
 		try {
