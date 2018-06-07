@@ -80,7 +80,6 @@ public class FileParsing {
 	/**
 	 * this method create arrays of sections to process
 	 *
-	 * @return - array of each section
 	 * @throws TypeTwoException - alerts of fatal errors in the program given values.
 	 * @throws IOException      - In out exception
 	 */
@@ -108,6 +107,7 @@ public class FileParsing {
 			// add the section to the sections array
 			sectionsArray.add(section);
 		}
+		buffer.close();
 		if (sectionsArray != null) {
 			filterAndOrder(sectionsArray);
 		}
