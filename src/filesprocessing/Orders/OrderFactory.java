@@ -18,18 +18,20 @@ public class OrderFactory {
     private final static int TYPE = 2;
     private final static int DEFAULT_COMPARATOR = ABS;
     public final static String DEFAULT_ORDER_NAME = ABS_NAME;
-    private static OrderFactory factory = new OrderFactory();
 
 
     /* ************************************* fields ************************************************** */
     private static Order[] orders = new Order[3];
+
+    private static OrderFactory factory = new OrderFactory();
+
     public static OrderFactory instance(){
         return factory;
     }
     /**
      * constructor, create array with all type of order comperator
      */
-    public OrderFactory() {
+    private OrderFactory() {
         orders[ABS] = new AbsOrder();
         orders[SIZE] = new SizeOrder();
         orders[TYPE] = new TypeOrder();

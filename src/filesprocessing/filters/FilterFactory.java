@@ -51,7 +51,7 @@ public class FilterFactory {
 	/**
 	 * constructor that initial all the filers in the array
 	 */
-	public FilterFactory() {
+	private FilterFactory() {
 		filters[SMALLER] = new SmallerThanFilter();
 		filters[GREATER] = new GreaterThanFilter();
 		filters[BETWEEN] = new BetweenFilter();
