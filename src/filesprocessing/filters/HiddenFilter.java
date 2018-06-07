@@ -16,8 +16,10 @@ public class HiddenFilter extends Filter{
 	 */
 	public boolean passFilter(File file, String[] args) {
 
-			return (file.isHidden() && args[FIRST_ARG_PLACE].equals(YES));
-
+		if (args[FIRST_ARG_PLACE].equals(YES)){
+			return file.isHidden();
+		}
+		return (!file.isHidden());
 	}
 	/**
 	 *
