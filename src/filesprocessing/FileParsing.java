@@ -34,6 +34,7 @@ public class FileParsing {
     private static final String WORD_DIVIDER = "#";
 
     /* ************************************* fields *********************************** */
+
     private FilterFactory filterFact = FilterFactory.instance();
     private OrderFactory orderFact = OrderFactory.instance();
     private int currentLine = 1;
@@ -174,7 +175,7 @@ public class FileParsing {
         }
     }
 
-    /* This method receives a filter line and filters the files accordingly.*/
+    /* This method receives a filter line and filters the files accordingly*/
     private void filterFiles(String[] command) {
         try {
             Filter filter = filterFact.getFilter(command[LINE_NAME_INDEX]);
