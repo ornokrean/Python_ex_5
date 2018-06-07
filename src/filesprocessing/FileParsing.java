@@ -101,11 +101,9 @@ public class FileParsing {
 				}
 				if (i == ORDER_ROW_INDEX) {
 					if (filteredFiles != null) {
-
 						orderFiles(parseLine(section[i], OrderFactory.REVERSE_SUFFIX));
 					} else {
 						throw new SourceException();
-
 					}
 				}
 				if (section[i] != null)
@@ -114,7 +112,6 @@ public class FileParsing {
 			for (File file : filteredFiles) {
 				System.out.println(file.getName());
 			}
-
 		}
 	}
 
@@ -149,7 +146,6 @@ public class FileParsing {
 			if (filter.checkCommand(command)) {
 				readFiles(command, filter);
 			}
-
 		} catch (FilterException e) {
 			System.err.print(String.format(e.getMessage(), currentLine));
 			// call to filterFiles with default filter:
@@ -160,11 +156,7 @@ public class FileParsing {
 	private void readFiles(String[] command, Filter filter) {
 		filteredFiles = new File(this.filesPath).listFiles(pathname -> (!pathname.isDirectory()) &&
 				(filter.passFilter(pathname, command) != oppositeRule));
-
-
 	}
-
-
 }
 
 
