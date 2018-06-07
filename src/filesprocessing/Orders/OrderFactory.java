@@ -18,6 +18,7 @@ public class OrderFactory {
     private final static int TYPE = 2;
     private final static int DEFAULT_COMPARATOR = ABS;
     public final static String DEFAULT_ORDER_NAME = ABS_NAME;
+    private static OrderFactory factory = new OrderFactory();
 
 
     /* ************************************* fields ************************************************** */
@@ -32,7 +33,10 @@ public class OrderFactory {
         orders[TYPE] = new TypeOrder();
     }
 
-    /**
+    public static OrderFactory instance(){
+        return factory;
+    }
+    /**k
      * @param order        -type of order
      * @param oppositeRule - true if reverse , else false
      * @return comparator
