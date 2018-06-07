@@ -1,5 +1,6 @@
 maayanchetrit
-Or Nokrean
+ornokrean
+
 
 =============================
 =      File description     =
@@ -77,10 +78,11 @@ FileParsing.java -the file parsing class. the constructor will get two arguments
                    format (etc.) the program will throw a TypeTwoException. in order to run this
                    class is it needed to create an instance with the proper values and to run the parsefile
                    function.
+
 =============================
 =          Design           =
 =============================
-Our code is designed in such a way that there is a class that receives the input from the user and analyzes
+Our code is designed in a way that there is a class that receives the input from the user and analyzes
 it. If the input contains the appropriate files, it passes it on to the next class that process the input.
 this class divides the commands into separate sections and executes each section separately. Each section
 consists of a filter and an Order. The department uses the filter package and the package of Order.
@@ -108,15 +110,31 @@ appropriate to it.
 =============================
 =  Implementation details   =
 =============================
+we have package for each of the main elements of the program: filter, order and exceptions.
+the filter and order act in a similar way: they have an abstract class that all the other sub-classes in the
+package (excluding the factory) extends and uses.
+they also have a factory class- a STATIC (singleton- like) array which contains a single instance of each
+sub-class, and the default one, in order to use known and constant memory-space. it has a instance function
+which return the only instance of the class, and will do all the functions and handling internally. this act
+on the single-choice principle and can be modified very easily - by only adding a class of new filter and the
+proper creating lines in the factory.
 
+the exceptions class works in the same way - it has two types of general exceptions that each exception will
+extend according to its type. this way we can catch all the typeTwo exception, for example, in one place (the
+main method).
 
+the directory processor will only check for number of arguments entered and run the fileParsing class, which
+will do all the work and print by calling the parseFile method.
+
+it is very easy to change (add\remove elements) the program because of the static members in the factory and
+the abstract classes implemented in the program. thus using the single-choice principle.
 
 
 =============================
 =    Answers to questions   =
 =============================
-Describe the exceptions hierarchy you used in order to handle errors in the program.
-Explain the considerations that made you choose that specific design.
+- Describe the exceptions hierarchy you used in order to handle errors in the program.
+   Explain the considerations that made you choose that specific design.
 
 at the beginning we create each exception in other package, means - orderException was in order Package,
 filterException was in the Filter Package. than. we though it will be more clearly and designed to create
@@ -125,8 +143,8 @@ exception. that's give us the possible to add another types of exception, and ex
 exception if we will want that in the feature. also, all the Exception appear in one package , that's also
 make the code more clean , clear , and bright .
 
-How did you sort your matched files? Did you use a data structure for this purpose?
-If so, what data structure and why?
+- How did you sort your matched files? Did you use a data structure for this purpose?
+   If so, what data structure and why?
 
 in order to sort by the given order, we chose to implement comparator , and sort the files with Arrays
 function, Arrays Function gets array and sort it with the given comperator. we chose this data structure

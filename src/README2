@@ -46,22 +46,6 @@ appropriate to it.
 =    Answers to questions   =
 =============================
 
-Describe the exceptions hierarchy you used in order to handle errors in the program.
-Explain the considerations that made you choose that specific design.
-
-at the beginning we create each exception in other package, means - orderException was in order Package,
-filterException was in the Filter Package. than. we though it will be more clearly and designed to create
-type one and type two exception, and than all the rest exception will implement the suitability type of
-exception. that's give us the possible to add another types of exception, and extend the existing type of
-exception if we will want that in the feature. also, all the Exception appear in one package , that's also
-make the code more clean , clear , and bright .
-
-How did you sort your matched files? Did you use a data structure for this purpose?
-If so, what data structure and why?
-
-in order to sort by the given order, we chose to implement comparator , and sort the files with Arrays
-function, Arrays Function gets array and sort it with the given comperator. we chose this data structure
-because its more clearly, and more efficient than sort array in my own way.
 
 
 
