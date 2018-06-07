@@ -1,0 +1,167 @@
+maayan
+
+Or Nokrean
+
+=============================
+=      File description     =
+=============================
+CollectionFacadeSet.java - Wraps an underlying Collection and serves to both simplify  its API and give it a
+common type with the implemented SimpleHashSets.
+
+ClosedHashSet.java -
+
+FacadeListWrapper.java -
+
+OpenHashSet.java -
+
+SimpleHashSet.java -
+
+SimpleSetPerformanceAnalyzer.java -
+
+
+=============================
+=          Design           =
+=============================
+i designed my code in a way that it will have mostly big functions inherited by the open and close classes, so
+ my code will not repeat itself, and will be modular and easy to change, add and remove functions.
+i also used the facade and extended it as described below.
+
+=============================
+=  Implementation details   =
+=============================
+
+
+
+
+=============================
+=    Answers to questions   =
+=============================
+1. Description of any java files not mentioned in this document. The description should include the
+purpose of each class and its main methods.
+
+2. How you implemented OpenHashSet’s table.
+I implemented the open hash set with a extending class of CollectionFacadeSet, meaning that I extended
+CollectionFacadeSet in a class called FacadeListWrapper, which has only one more option over the
+CollectionFacadeSet - it has a getCollection() function, which gives me the ability to get the collection
+from CollectionFacadeSet (which is protected there) and iterate over each collection whilst rehashing. I've
+created an array of instances from the FacadeListWrapper, and used them with a TreeSet type collection. (which
+ was APPROVED in the FORUM).
+those decisions made my OpenHashSet table really fast, and approachable to rehashing.
+
+
+3. How you implemented the deletion mechanism in ClosedHashSet.
+when a string is deleted, it is changed to an indicator which is stated as a constant in the class. i chose
+the space char, as " " in order to have as many issues (it is more likely to randomly choose this char than a
+complicated string like "XXDELETEDXX"), because i wanted to give the user to option to enter any string he
+desires, as the rules require. than, if the user is giving me an input of this delete indication, my
+implementation is designed to save the index of this char in an field inside the object, so it can track if
+the delete indication string is REALLY inside the set, opposed to having a lot of delete marks all over the
+set. keeping in mind that it can only be in the set once, it was okay to save the index in a variable, that
+help to control this problem.
+
+in conclusion:
+when a string is deleted - i change it to an indicator that was decided.
+(when the indicator is entered i find it rightful place inside the table, and save its index.)
+when this indicator is deleted, i simply delete the index i saved.
+when a position is null, it is an indication of never used.
+
+4. The results of the analysis.
+I used TreeSet in my OpenHashSet, so those result came out really fast.
+the results for the CloseHashSet was slower by a big difference, because of the index probing apparently.
+
+5. The number of iterations in your warm-up phase.
+i ran 60,000 iteration to get optimal results.
+
+6. Discuss the results of the analysis in depth.
+● Account, in separate, for OpenHashSet’s and ClosedHashSet’s bad results for data1.txt.
+
+OpenHashSet did not have much problem in this section, apparently because of the TreeSet build, but was much
+bigger than in data2.
+ClosedHashSet really was worse than in data2.
+the problem is going over and over on the same hash, making it harder and slower every string after the other.
+
+● Summarize the strengths and weaknesses of each of the data structures as reflected by
+the results. Which would you use for which purposes?
+
+OpenHashSet- really fast in data 2, but slower in data 1 with same hash words.
+ClosedHashSet- really really slow in same hash words, but somewhat fast in regular words.
+TreeSet- average, sometimes fast sometimes slow, won't be my first choice.
+LinkedList- really really slow, worst every time.
+HashSet- on average it is the fastest, its implementation is outstanding.
+
+
+id choose the HashSet of course, because it almost always won. so i will use it for every purpose. becuse on
+average, it will be the fastest solution, except for some weird cases.
+
+● How did your two implementations compare between themselves?
+data1:
+OpenHashSet_AddData1 = 247 (win)
+ClosedHashSet_AddData1 = 127247
+
+data2:
+OpenHashSet_AddData2 = 71
+ClosedHashSet_AddData2 = 19 (win)
+
+data1 "hi":
+OpenHashSet_Contains_hi1 = 36
+ClosedHashSet_Contains_hi1 = 26 (win)
+
+data1 "-13170890158":
+OpenHashSet_Contains_negative = 145 (win)
+ClosedHashSet_Contains_negative = 1225826
+
+data2 "23":
+OpenHashSet_Contains_23 = 28 (win)
+ClosedHashSet_Contains_23 = 42
+
+data2 "hi":
+OpenHashSet_Contains_hi2 = 14 (win)
+ClosedHashSet_Contains_hi2 = 41
+
+the OpenHashSet won most of the comparisons.
+
+● How did your implementations compare to Java’s built in HashSet?
+data1:
+OpenHashSet_AddData1 = 247
+ClosedHashSet_AddData1 = 127247
+TreeSet_AddData1 = 46
+LinkedList_AddData1 = 31446
+HashSet_AddData1 = 44 (win)
+
+data2:
+OpenHashSet_AddData2 = 71
+ClosedHashSet_AddData2 = 19
+HashSet_AddData2 = 7 (win)
+
+data1 "hi":
+OpenHashSet_Contains_hi1 = 36
+ClosedHashSet_Contains_hi1 = 26
+HashSet_Contains_hi1 = 13 (win)
+
+data1 "-13170890158":
+OpenHashSet_Contains_negative = 145
+ClosedHashSet_Contains_negative = 1225826
+HashSet_Contains_negative = 49 (win)
+
+data2 "23":
+OpenHashSet_Contains_23 = 28
+ClosedHashSet_Contains_23 = 42 (win)
+HashSet_Contains_23 = 44
+
+data2 "hi":
+OpenHashSet_Contains_hi2 = 14 (win)
+ClosedHashSet_Contains_hi2 = 41
+HashSet_Contains_hi2 = 15
+
+it won most of the comparisons, and lost by a little when lost.
+
+● What results surprised you and which did you expect?
+i was surprised by the OpenHashSet results, because it was really fast.
+
+● Did you find java’s HashSet performance on data1.txt surprising? Can you explain it? Can
+google? (no penalty if you leave this empty)
+I didn't find it surprising, because I haven't thought about this, so i just took it for granted.
+
+● If you tried clamping expressions to valid indices in more than one way, what were they
+and how significant was the speed-up?
+i didn't try it.
