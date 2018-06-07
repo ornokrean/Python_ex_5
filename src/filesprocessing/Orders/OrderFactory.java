@@ -23,7 +23,9 @@ public class OrderFactory {
 
     /* ************************************* fields ************************************************** */
     private static Order[] orders = new Order[3];
-
+    public static OrderFactory instance(){
+        return factory;
+    }
     /**
      * constructor, create array with all type of order comperator
      */
@@ -33,9 +35,7 @@ public class OrderFactory {
         orders[TYPE] = new TypeOrder();
     }
 
-    public static OrderFactory instance(){
-        return factory;
-    }
+
     /**k
      * @param order        -type of order
      * @param oppositeRule - true if reverse , else false
