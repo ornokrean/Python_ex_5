@@ -8,7 +8,6 @@ import java.io.File;
  * Check if the file a hidden file
  */
 public class HiddenFilter extends Filter{
-	private String value;
 	/**
 	 * check if the file was filtered
 	 * @param file - the File
@@ -17,7 +16,7 @@ public class HiddenFilter extends Filter{
 	 */
 	public boolean passFilter(File file, String[] args) {
 
-		return (file.isHidden() && this.value.equals(YES));
+			return (file.isHidden() && args[FIRST_ARG_PLACE].equals(YES));
 
 	}
 	/**
@@ -28,8 +27,7 @@ public class HiddenFilter extends Filter{
 	 */
 	@Override
 	public boolean checkCommand(String[] command) throws FilterException{
-		this.value = command[FIRST_ARG_PLACE];
-		if (command.length != REGULAR_NUM_OF_ARGS || ifArgInvalid(value)) {
+		if (command.length != REGULAR_NUM_OF_ARGS || ifArgInvalid(command[FIRST_ARG_PLACE])) {
 			throw new FilterException();
 		}
 		return true;
