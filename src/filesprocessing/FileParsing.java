@@ -30,7 +30,7 @@ public class FileParsing {
 	private static final String ORDER_HEADER = "ORDER";
 	private static final int START_INDEX = 0;
 	private static final String WORD_DIVIDER = "#";
-	private FilterFactory filterFact = new FilterFactory();
+	private FilterFactory filterFact = FilterFactory.instance();
 	private OrderFactory orderFact = new OrderFactory();
 	private int currentLine = 1;
 	private File[] filteredFiles;
@@ -100,6 +100,7 @@ public class FileParsing {
 					filterFiles(parseLine(section[i], FilterFactory.NOT_SUFFIX));
 				}
 				if (i == ORDER_ROW_INDEX) {
+
 					orderFiles(parseLine(section[i], OrderFactory.REVERSE_SUFFIX));
 				}
 				if (section[i] != null)
@@ -135,9 +136,6 @@ public class FileParsing {
 			System.err.print(String.format(e.getMessage(), currentLine));
 			orderFiles(parseLine(DEFAULT_ORDER_LINE, OrderFactory.REVERSE_SUFFIX));
 		}
-//		}catch (NullPointerException e){
-//			System.err.println("here");
-//		}
 	}
 
 

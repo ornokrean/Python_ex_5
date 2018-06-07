@@ -4,6 +4,8 @@ package filesprocessing.filters;
  * class that create an array with all the type of filters
  */
 public class FilterFactory {
+
+
 	/* ******************************** constants **************************************** */
 
 	/* Constant for case of the opposite of the filter */
@@ -41,7 +43,11 @@ public class FilterFactory {
 
 	/* fields - array that contain all the filters of the class */
 	private static Filter[] filters = new Filter[NUM_OF_FILTERS];
+	private static FilterFactory factory = new FilterFactory();
 
+	public static FilterFactory instance(){
+		return factory;
+	}
 	/**
 	 * constructor that initial all the filers in the array
 	 */
