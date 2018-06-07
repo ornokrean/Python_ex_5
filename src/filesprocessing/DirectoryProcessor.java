@@ -4,7 +4,6 @@ import filesprocessing.FileProcessingExceptions.TypeTwoException;
 import filesprocessing.FileProcessingExceptions.WrongArgumentsException;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * The Main class , get the argument from the user, checks if there is exactly two arguments , and if so will
